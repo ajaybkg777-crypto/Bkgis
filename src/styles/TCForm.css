@@ -1,0 +1,68 @@
+.tc-form {
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tc-form input,
+.tc-form textarea {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+}
+
+.tc-form input:focus,
+.tc-form textarea:focus {
+  outline: none;
+  border-color: #0f2b63;
+}
+
+.tc-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.tc-form button {
+  padding: 12px;
+  background: #0f2b63;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.tc-form button:hover {
+  background: #2b5893;
+}
+
+.tc-form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

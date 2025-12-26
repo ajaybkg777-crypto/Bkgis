@@ -1,0 +1,132 @@
+/* =========================
+   OVERLAY
+========================= */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 43, 99, 0.45); /* 🔽 blue reduced */
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   POPUP CARD
+========================= */
+.popup > div {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(145deg, #173a78, #2b5893); /* 🔽 lighter blue */
+  padding: 30px 28px;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28); /* softer shadow */
+  color: #ffffff;
+  animation: popupFade 0.3s ease;
+}
+
+/* =========================
+   HEADING & TEXT
+========================= */
+.popup h2 {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 1.55rem;
+  color: #ffda79;
+}
+
+.popup p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #e6ecff; /* softer white */
+  margin-bottom: 20px;
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+.popup input {
+  width: 94%;
+  margin-bottom: 15px;
+  padding: 13px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+
+  background: rgba(255, 255, 255, 0.18); /* 🔽 lighter input bg */
+  color: #ffffff;
+}
+
+.popup input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.popup input:focus {
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 0 2px rgba(255, 218, 121, 0.45);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.popup button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  background: linear-gradient(135deg, #ffda79, #f4c430);
+  color: #173a78;
+
+  box-shadow: 0 8px 20px rgba(255, 218, 121, 0.35);
+  transition: all 0.25s ease;
+}
+
+.popup button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(255, 218, 121, 0.45);
+}
+
+.popup button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 480px) {
+  .popup > div {
+    padding: 24px 20px;
+  }
+
+  .popup h2 {
+    font-size: 1.35rem;
+  }
+
+  .popup input {
+    font-size: 0.9rem;
+  }
+}

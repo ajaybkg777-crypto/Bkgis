@@ -1,0 +1,185 @@
+/* ======================================================
+   PAGE BASE 
+====================================================== */
+.results-container {
+  font-family: "Poppins", sans-serif;
+  background: #f1f5ff;
+  min-height: 100vh;
+  padding: 40px 8%;
+}
+
+/* ======================================================
+   HEADING
+====================================================== */
+.main-section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.portal-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #0f2b63;
+}
+
+.portal-subtitle {
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ======================================================
+   SEARCH CARD
+====================================================== */
+.search-card {
+  background: #ffffff;
+  padding: 28px 30px;
+  border-radius: 18px;
+  max-width: 650px;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(0, 20, 60, 0.08);
+  transition: 0.25s ease;
+}
+
+.search-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ======================================================
+   FORM
+====================================================== */
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ======================================================
+   SELECT DROPDOWN
+====================================================== */
+.select-input {
+  width: 100%;
+  background: #eef3ff;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  transition: 0.3s;
+}
+
+.select-input:focus {
+  background: #dbe7ff;
+  border-left: 4px solid #0f2b63;
+}
+
+/* ======================================================
+   INPUT GROUP
+====================================================== */
+.input-group {
+  display: flex;
+  height: 25px;
+  align-items: center;
+  background: #eef3ff;
+  padding: 12px 15px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.input-group:focus-within {
+  background: #dbe7ff;
+  border-left: 4px solid #0f2b63;
+}
+
+.input-group .icon {
+  font-size: 1.2rem;
+  color: #0f2b63;
+  margin-right: 10px;
+}
+
+.input-group input {
+  flex: 1;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #333;
+  margin-left: 16px;
+}
+
+/* ======================================================
+   BUTTON
+====================================================== */
+.search-btn {
+  background: linear-gradient(135deg, #0f2b63, #2b5893);
+  color: #ffffff;
+  padding: 14px 0;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  /* NEW EFFECTS */
+  box-shadow: 0 4px 12px rgba(0, 85, 255, 0.25);
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SHINE EFFECT */
+.search-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d2455, #234a80);
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.search-btn:hover::before {
+  left: 120%;
+}
+
+/* HOVER LIFT EFFECT */
+.search-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(10, 92, 255, 0.35);
+  background: linear-gradient(135deg, #0d2455, #234a80);
+}
+
+/* DISABLED */
+.search-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media (max-width: 700px) {
+  .results-container {
+    padding: 25px 5%;
+  }
+
+  .search-card {
+    padding: 22px;
+  }
+
+  .portal-title {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,188 @@
+/* 🌈 General */
+.contact-pro {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0f2b63, #2b5893);
+  color: #ffffff;
+  overflow-x: hidden;
+  animation: bgMove 10s infinite alternate ease-in-out;
+}
+
+/* 🎇 Animated Background */
+@keyframes bgMove {
+  0% {
+    background: linear-gradient(135deg, #0f2b63, #2b5893);
+  }
+  100% {
+    background: linear-gradient(135deg, #2b5893, #0f2b63);
+  }
+}
+
+/* 🏫 Hero Section */
+.contact-hero-pro {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #193d7c 0%, #0f2b63 100%);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.hero-text h1 {
+  font-size: 3rem;
+  color: #ffda79;
+  letter-spacing: 1px;
+  animation: fadeDown 1.5s ease;
+}
+.hero-text p {
+  color: #eaeaea;
+  font-size: 1.2rem;
+  animation: fadeUp 1.5s ease;
+}
+
+/* 🧊 Info Cards Section */
+.contact-info-pro {
+  width: 90%;
+  margin: -60px auto 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+.info-card-pro {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 25px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid #ffda79;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  color: white;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 25px rgba(255, 218, 121, 0.2);
+}
+.info-card-pro:hover {
+  background: #ffda79;
+  color: #0f2b63;
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 35px rgba(255, 218, 121, 0.4);
+}
+.icon {
+  font-size: 42px;
+  color: #ffda79;
+  flex-shrink: 0;
+}
+.info-card-pro:hover .icon {
+  color: #0f2b63;
+}
+
+/* 💌 Form + Map Layout */
+.contact-body-pro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  width: 90%;
+  margin: 0 auto 60px;
+}
+
+/* 📬 Form Box */
+.form-box-pro {
+  flex: 1 1 480px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ffda79;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 10px 35px rgba(255, 218, 121, 0.2);
+}
+.form-box-pro h2 {
+  color: #ffda79;
+  margin-bottom: 10px;
+}
+.form-box-pro p {
+  color: #f0f0f0;
+  margin-bottom: 25px;
+}
+.contact-form-pro {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contact-form-pro input,
+.contact-form-pro textarea {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0f2b63;
+  font-size: 1rem;
+}
+.contact-form-pro input:focus,
+.contact-form-pro textarea:focus {
+  box-shadow: 0 0 0 2px #ffda79;
+}
+.contact-form-pro button {
+  background: #ffda79;
+  color: #0f2b63;
+  font-weight: bold;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.contact-form-pro button:hover {
+  background: #fff5c1;
+  transform: scale(1.05);
+}
+
+/* 🗺️ Map Box */
+.map-box-pro {
+  flex: 1 1 480px;
+  border: 3px solid #ffda79;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+}
+.map-box-pro iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+}
+
+/* ⚜️ Footer */
+.contact-footer-pro {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  text-align: center;
+  border-top: 2px solid #ffda79;
+  color: #ffda79;
+  font-size: 0.95rem;
+}
+
+/* ✨ Animations */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

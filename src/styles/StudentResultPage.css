@@ -1,0 +1,182 @@
+/* ---------------------------------------------------
+   PAGE BASE
+--------------------------------------------------- */
+.result-page {
+  font-family: "Poppins", sans-serif;
+  background: #f3f6ff;
+  min-height: 100vh;
+  padding: 40px 8%;
+}
+
+/* ---------------------------------------------------
+   PAGE HEADER
+--------------------------------------------------- */
+.result-header {
+  text-align: center;
+   font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #0f2b63;
+}
+
+
+/* ---------------------------------------------------
+   RESULT CARD
+--------------------------------------------------- */
+.result-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  max-width: 850px;
+  margin: auto;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #ffda79;
+}
+
+/* ---------------------------------------------------
+   STUDENT NAME
+--------------------------------------------------- */
+.student-name {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #0f2b63;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* ---------------------------------------------------
+   DETAIL ROWS
+--------------------------------------------------- */
+.info-box {
+  max-width: 850px;
+  margin: 25px auto;
+  padding: 22px 35px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  border-top: 4px solid #ffda79;
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+/* Each field same width for perfect alignment */
+.info-item {
+  flex: 1;
+  text-align: center;
+}
+
+/* Label */
+.info-item label {
+  display: block;
+  font-size: 1rem;
+  color: #2b5893;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Value */
+.info-item span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f2b63;
+  padding-bottom: 3px;
+  border-bottom: 3px solid #ffda79;
+  display: inline-block;
+  min-width: 120px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 700px) {
+  .info-box {
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .info-item span {
+    font-size: 1.3rem;
+    min-width: auto;
+  }
+}
+
+
+
+
+
+/* ---------------------------------------------------
+   HIGHLIGHT SUMMARY
+--------------------------------------------------- */
+.marks-summary {
+  background: #edf3ff;
+  padding: 14px 18px;
+  margin-top: 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  border-left: 5px solid #ffda79;
+}
+
+.marks-summary p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #0f2b63;
+   text-align: center; 
+}
+
+.grade {
+  background: #ffe8c2;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #5a2800;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------
+   MARKS TABLE
+--------------------------------------------------- */
+.marks-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;     /* ⭐ CENTER all text */
+}
+
+.marks-table th {
+  background:linear-gradient(360deg, #4b79a7, #0f2b63);
+  color: #ffffff;
+  padding: 12px;
+  font-size: 1rem;
+   text-align: center; 
+}
+
+.marks-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1rem;
+  color: #333;
+}
+
+.marks-table tr:nth-child(even) {
+  background: #f8f9ff;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 700px) {
+  .row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .result-card {
+    padding: 20px;
+  }
+
+  .student-name {
+    font-size: 1.6rem;
+  }
+}

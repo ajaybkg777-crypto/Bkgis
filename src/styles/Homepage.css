@@ -1,0 +1,620 @@
+/* ======================================================
+   GLOBAL VARIABLES
+====================================================== */
+:root {
+  --bg: #f8f9fb;
+  --text: #333;
+  --accent-blue: #0f2b63;
+  --accent-blue-2: #1e3a8a;
+  --accent-primary: #0078d7;
+  --gold: #ffda79;
+  --gold-2: #ffcf54;
+
+  --surface: #ffffff;
+  --muted: #777;
+
+  --soft-shadow: 0 8px 30px rgba(15,43,99,0.07);
+  --strong-shadow: 0 18px 45px rgba(0,0,0,0.12);
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --transition: 0.28s ease;
+}
+
+/* ======================================================
+   GLOBAL BASE STYLES
+====================================================== */
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  
+}
+
+/* ======================================================
+    HERO SECTION
+====================================================== */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  margin-bottom: 70px;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.28);
+}
+
+/* ======================================================
+   SECTION HEADERS
+====================================================== */
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--accent-blue-2);
+  margin: 20px;
+  text-align: center;
+}
+
+.section-title span {
+  color: var(--accent-primary);
+  position: relative;
+  margin: 8px;
+}
+
+.section-title span::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-blue-2));
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  max-width: 850px;
+  margin: auto;
+}
+
+
+/* ======================================================
+   WHY CHOOSE US CARDS
+====================================================== */
+.why-card-slide {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: var(--soft-shadow);
+  transition: var(--transition);
+  margin: 30px;
+}
+
+.why-card-slide:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--strong-shadow);
+}
+
+.why-card-slide img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: 0.45s ease;
+}
+
+.why-card-slide:hover img {
+  transform: scale(1.04);
+}
+
+/* ======================================================
+   CTA BUTTONS
+====================================================== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn.primary {
+  color: #fff;
+  background: linear-gradient(180deg, #4b79a7, #0f2b63);
+}
+
+.btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--soft-shadow);
+}
+
+.btn.secondary {
+  border: 2px solid var(--accent-blue);
+  color: var(--accent-blue);
+  background: transparent;
+}
+
+.btn.secondary:hover {
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+/* ======================================================
+   TWO COLUMN SECTION — Ultra Premium
+====================================================== */
+.news-calendar-section {
+  max-width: 1400px;
+  margin: auto;
+  padding: 80px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+
+
+/* ======================================================
+   PREMIUM BOX — Crystal Clean + Smooth Floating
+====================================================== */
+.premium-box {
+  background: #ffffff;
+  padding: 22px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 218, 121, 0.45);
+
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  overflow: hidden;
+  position: relative;
+
+  background: linear-gradient(135deg, #ffffff, #f9fbff);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.10);
+  transition: 0.35s cubic-bezier(.19,1,.22,1);
+}
+
+.premium-box:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.16);
+}
+
+/* GOLD BOX */
+.premium-box.accent-gold {
+  background: linear-gradient(30deg, #fffef9, #ffe9bf, #ccae6b);
+  border-color: #ffda79;
+  box-shadow: 0 10px 32px rgba(255, 203, 87, 0.25);
+}
+
+
+
+/* ======================================================
+   TITLE — Elegant + Gold Underline
+====================================================== */
+.box-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0f2b63;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+
+  border-bottom: 3px solid #ffda79;
+  width: fit-content;
+}
+
+
+
+/* ======================================================
+   ANNOUNCEMENTS — Premium Auto Scroll
+====================================================== */
+.announcement-scroll {
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: announcementScroll 12s linear infinite;
+}
+
+.announcement-scroll:hover .scroll-inner {
+  animation-play-state: paused;
+}
+
+@keyframes announcementScroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-55%); }
+}
+
+.scroll-item {
+  background: linear-gradient(to right,#f4f7ff,#e9edff);
+  padding: 14px;
+  border-left: 6px solid #0f2b63;
+  border-radius: 14px;
+
+  box-shadow: 0 6px 16px rgba(15, 43, 99, 0.15);
+  transition: 0.3s ease;
+}
+
+.scroll-item:hover {
+  background: #e3e8ff;
+  transform: translateX(10px);
+}
+
+.scroll-item h4 {
+  font-size: 0.96rem;
+  font-weight: 900;
+  color: #0f2b63;
+}
+
+.scroll-item .date {
+  font-size: 0.72rem;
+  margin-top: 4px;
+  color: #555;
+}
+
+
+
+/* ======================================================
+   VIEW ALL BUTTON — Clean + Modern
+====================================================== */
+.view-more-btn {
+  padding: 12px 0;
+  margin-top: auto;
+  text-align: center;
+
+  font-weight: 900;
+  color: #0f2b63;
+  border-top: 1px solid #e1e1e1;
+
+  transition: 0.25s ease;
+}
+
+.view-more-btn:hover {
+  background: #eef3ff;
+  color: #103878;
+}
+
+
+
+/* ======================================================
+   CALENDAR — Smooth, Compact, Premium Fit
+====================================================== */
+.real-calendar-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.90);
+  
+  
+}
+
+.right-calendar-box .real-calendar-box {
+  flex-grow: 1;
+  overflow: hidden;
+  margin-bottom: 8px;
+  transform: scale(0.85);   /* PERFECT FIT */
+  transform-origin: top center;
+}
+
+
+/* HEADER */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ffda79;
+}
+
+.calendar-header h3 {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #0f2b63;
+}
+
+.calendar-header button {
+  border: none;
+  background: #0f2b63;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+
+  font-size: 1.1rem;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.calendar-header button:hover {
+  transform: scale(1.20);
+  background: #143b7a;
+}
+
+
+
+/* WEEK DAYS */
+.week-row {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  margin: 6px 0;
+}
+
+.week-name {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: #0f2b63;
+  opacity: 0.85;
+}
+
+
+
+/* DAY GRID */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 6px;
+}
+
+.empty {
+  height: 34px;
+}
+
+
+
+/* DAY CELL */
+.day-box {
+  background: #f5f7ff;
+  border: 1px solid #d9dfff;
+
+  height: 34px;
+  border-radius: 10px;
+
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f2b63;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.day-box:hover {
+  background: #e8ecff;
+  transform: scale(1.08);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+}
+
+
+
+/* EVENT DAY */
+.has-event {
+  background: #ffe39d;
+  border: 2px solid #ffcb4d;
+  color: #4a3500;
+  font-weight: 900;
+  transform: scale(1.04);
+}
+
+.has-event:hover {
+  background: #ffd77b;
+  transform: scale(1.10);
+}
+
+/* Event Dot */
+.event-dot {
+  width: 7px;
+  height: 7px;
+  background: #ffae00;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+
+
+
+/* ======================================================
+   EVENT POPUP — Luxury Modal
+====================================================== */
+.event-popup {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(5px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 20;
+}
+
+.event-popup-content {
+  background: #ffffff;
+  padding: 22px;
+  width: 92%;
+  max-width: 360px;
+
+  border-radius: 16px;
+  border-top: 7px solid #ffda79;
+
+  animation: popupZoom 0.30s ease-out;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.30);
+}
+
+@keyframes popupZoom {
+  from { opacity: 0; transform: scale(0.85) translateY(30px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.event-item {
+  background: #fff6dc;
+  padding: 12px;
+  border-left: 5px solid #ffc94a;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+
+
+/* Close Button */
+.event-popup-content button {
+  width: 100%;
+  padding: 10px;
+  background: #0f2b63;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 900;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.event-popup-content button:hover {
+  background: #163d7a;
+}
+
+
+
+/* Bottom Button */
+.calendar-btn {
+  padding: 12px 0;
+  margin-top: auto;
+  text-align: center;
+
+  font-weight: 900;
+  color: #0f2b63;
+  border-top: 1px solid #e1e1e1;
+
+  transition: 0.25s ease;
+}
+
+.calendar-btn:hover {
+  background: #eef3ff;
+  color: #163d7a;
+}
+
+
+/* ======================================================
+   RESPONSIVE ONLY – NO DESIGN CHANGE
+====================================================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .news-calendar-section {
+    padding: 60px 30px;
+    gap: 30px;
+  }
+}
+
+/* Tablets & small laptops */
+@media (max-width: 900px) {
+
+  /* two column → single column */
+  .news-calendar-section {
+    grid-template-columns: 1fr;
+  }
+
+  /* prevent overflow */
+  .premium-box {
+    height: auto;
+  }
+
+  /* announcement scroll height reduce */
+  .announcement-scroll {
+    height: 280px;
+  }
+
+  /* calendar fit */
+  .right-calendar-box .real-calendar-box {
+    transform: scale(0.95);
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+
+  /* hero video height */
+  .video-container {
+    height: 280px;
+  }
+
+  /* text wrap only */
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+
+  /* cards spacing */
+  .why-card-slide {
+    margin: 15px;
+  }
+
+  /* calendar fit */
+  .right-calendar-box .real-calendar-box {
+    transform: scale(0.88);
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+
+  .video-container {
+    height: 230px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .announcement-scroll {
+    height: 240px;
+  }
+
+  .day-box {
+    height: 30px;
+    font-size: 0.7rem;
+  }
+}
