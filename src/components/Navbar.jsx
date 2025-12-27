@@ -110,6 +110,7 @@ export default function Navbar() {
   <NavLink to="/results" onClick={closeMenu}>Results</NavLink>
   <NavLink to="/tc" onClick={closeMenu}>TC</NavLink>
   <NavLink to="/gallery" onClick={closeMenu}>Gallery</NavLink>
+  <NavLink to="/about" onClick={closeMenu}>About Us</NavLink>
   <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
   <NavLink to="/mandatory" onClick={closeMenu}>Mandatory Disclosure</NavLink>
 </div>
