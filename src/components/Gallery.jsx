@@ -20,7 +20,7 @@ export default function Gallery() {
 
   /* ===== Fetch Gallery ===== */
   useEffect(() => {
-    api.get("/gallery")
+    api.get("/public/gallery")
       .then(res => setItems(res.data || []))
       .catch(err => console.error("Gallery fetch error:", err));
   }, []);
