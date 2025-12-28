@@ -123,8 +123,8 @@ const baseUrl = process.env.REACT_APP_API_URL
               className="event-card"
               onClick={() => setSelectedEvent(event)}
             >
-             <img src={`${baseUrl}${group[0].url}`} />
-
+            <img
+                src={baseUrl + group[0].url}
                 alt={event}
                 loading="lazy"
               />
@@ -149,8 +149,7 @@ const baseUrl = process.env.REACT_APP_API_URL
                 className="photo-box"
                 onClick={() => setModalImage(baseUrl + photo.url)}
               >
-                <img src={`${baseUrl}${group[0].url}`} />
- alt="" loading="lazy" />
+                 <img src={baseUrl + photo.url} alt="" loading="lazy" />
               </div>
             ))}
           </div>
