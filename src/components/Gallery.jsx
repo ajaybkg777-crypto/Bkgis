@@ -73,8 +73,10 @@ export default function Gallery() {
     return acc;
   }, {});
 
-  const baseUrl = (process.env.REACT_APP_API_URL || "http://localhost:5000")
-    .replace("/api", "");
+const baseUrl = process.env.REACT_APP_API_URL
+  ? process.env.REACT_APP_API_URL.replace(/\/api$/, "")
+  : "http://localhost:5000";
+
 
   return (
     <section className="gallery-simple">
@@ -121,8 +123,8 @@ export default function Gallery() {
               className="event-card"
               onClick={() => setSelectedEvent(event)}
             >
-              <img
-                src={baseUrl + group[0].url}
+             <img src={`${baseUrl}${group[0].url}`} />
+
                 alt={event}
                 loading="lazy"
               />
@@ -147,7 +149,8 @@ export default function Gallery() {
                 className="photo-box"
                 onClick={() => setModalImage(baseUrl + photo.url)}
               >
-                <img src={baseUrl + photo.url} alt="" loading="lazy" />
+                <img src={`${baseUrl}${group[0].url}`} />
+ alt="" loading="lazy" />
               </div>
             ))}
           </div>
