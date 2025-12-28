@@ -159,11 +159,18 @@ export default function Gallery() {
       )}
 
       {/* ===== Image Modal ===== */}
-      {modalImage && (
-        <div className="modal" onClick={() => setModalImage(null)}>
-          <img src={modalImage} alt="Preview" />
-        </div>
-      )}
+     {modalImage && (
+  <div className="modal-full" onClick={() => setModalImage(null)}>
+    <img
+      src={modalImage}
+      alt="Preview"
+      className="modal-image"
+      onClick={(e) => e.stopPropagation()}
+    />
+    <span className="close-btn" onClick={() => setModalImage(null)}>✕</span>
+  </div>
+)}
+
     </section>
   );
 }
