@@ -1,68 +1,116 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { FaListOl, FaMedal } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaMedal, FaArrowLeft } from "react-icons/fa";
 import "../styles/StudentResultPage.css";
 
 export default function StudentResultPage() {
   const { state } = useLocation();
-  const r = state?.result;
+  const navigate = useNavigate();
 
-  if (!r) return <h2 className="not-found">No result data available.</h2>;
+  const result = state?.result;
+
+  if (!result) {
+    return (
+      <div className="result-error">
+        <h2>⚠ Result Not Found</h2>
+        <p>Please search again from the result page.</p>
+        <button onClick={() => navigate("/results")}>Go Back</button>
+      </div>
+    );
+  }
+
+  const {
+    name,
+    roll,
+    class: studentClass,
+    exam,
+    totalObtained,
+    totalMax,
+    percentage,
+    grade,
+    subjectMarks = [],
+  } = result;
 
   return (
     <div className="result-page">
-      <h1 className="result-header">BKGIS Student Result</h1>
+      <header className="result-header">
+        <h1>BKG International School</h1>
+        <p className="subtitle">Student Result</p>
+      </header>
 
       <div className="result-card">
-        <h2 className="student-name">{r.name}</h2>
-<div className="info-box">
-  <div className="info-item">
-    <label>Roll No</label>
-    <span>{r.roll}</span>
-  </div>
+        {/* Student Info */}
+        <div className="student-info">
+          <h2>{name}</h2>
 
-  <div className="info-item">
-    <label>Class</label>
-    <span>{r.class}</span>
-  </div>
-
-  <div className="info-item">
-    <label>Exam</label>
-    <span>{r.exam}</span>
-  </div>
-</div>
-
-
-
-
-
-
-        <div className="marks-summary">
-          <p><FaMedal /> Total Obtained: <b>{r.totalObtained}</b></p>
-          <p>Out of: <b>{r.totalMax}</b></p>
-          <p>Percentage: <b>{r.percentage}%</b></p>
-          <p>Grade: <span className="grade">{r.grade}</span></p>
+          <div className="info-grid">
+            <div><span>Roll No</span><b>{roll}</b></div>
+            <div><span>Class</span><b>{studentClass}</b></div>
+            <div><span>Exam</span><b>{exam}</b></div>
+          </div>
         </div>
 
-        <table className="marks-table">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Marks</th>
-              <th>Out of</th>
-            </tr>
-          </thead>
+        {/* Summary */}
+        <div className="summary-box">
+          <div className="summary-item">
+            <FaMedal />
+            <span>Total Marks</span>
+            <strong>{totalObtained} / {totalMax}</strong>
+          </div>
 
-          <tbody>
-            {r.subjectMarks?.map((m, i) => (
-              <tr key={i}>
-                <td>{m.subject}</td>
-                <td>{m.marks}</td>
-                <td>{m.max}</td>
+          <div className="summary-item">
+            <span>Percentage</span>
+            <strong>{percentage}%</strong>
+          </div>
+
+          <div className="summary-item highlight">
+            <span>Grade</span>
+            <strong>{grade}</strong>
+          </div>
+        </div>
+
+        {/* Marks Table */}
+        <div className="marks-section">
+          <h3>Subject-wise Marks</h3>
+
+          <table className="marks-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Out of</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {subjectMarks.length > 0 ? (
+                subjectMarks.map((s, i) => (
+                  <tr key={i}>
+                    <td>{s.subject}</td>
+                    <td>{s.marks}</td>
+                    <td>{s.max}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3" style={{ textAlign: "center" }}>
+                    No subject data available
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="result-actions">
+          <button onClick={() => window.print()} className="btn-print">
+            Print Result
+          </button>
+
+          <button onClick={() => navigate("/results")} className="btn-back">
+            <FaArrowLeft /> Back to Search
+          </button>
+        </div>
       </div>
     </div>
   );
