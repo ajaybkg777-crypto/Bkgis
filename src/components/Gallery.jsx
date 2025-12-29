@@ -7,89 +7,47 @@ export default function Gallery() {
   const [section, setSection] = useState("junior");
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalImage, setModalImage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  /* ===== Counseling Popup State ===== */
-  const [showCounseling, setShowCounseling] = useState(false);
-  const [savingLead, setSavingLead] = useState(false);
-  const [lead, setLead] = useState({
-    name: "",
-    phone: "",
-    village: "",
-    city: ""
-  });
-
-  /* ===== Fetch Gallery ===== */
+  /* ================= FETCH GALLERY ================= */
   useEffect(() => {
-    api.get("/public/gallery")
-      .then(res => setItems(res.data || []))
-      .catch(err => console.error("Gallery fetch error:", err));
+    const fetchGallery = async () => {
+      try {
+        const res = await api.get("/public/gallery");
+        setItems(res.data || []);
+      } catch (err) {
+        console.error("Gallery fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGallery();
   }, []);
 
-  /* ===== Show Counseling Popup (once per user) ===== */
-  useEffect(() => {
-    if (!items.length) return;
-
-    const done = localStorage.getItem("counseling_done");
-    if (!done) {
-      const timer = setTimeout(() => setShowCounseling(true), 2500);
-      return () => clearTimeout(timer);
-    }
-  }, [items]);
-
-  /* ===== Submit Counseling Lead ===== */
-  const submitLead = async (e) => {
-    e.preventDefault();
-
-    if (!lead.name.trim() || !lead.phone.trim()) {
-      return alert("Name and phone are required");
-    }
-
-    if (!/^\d{7,15}$/.test(lead.phone)) {
-      return alert("Enter a valid phone number");
-    }
-
-    try {
-      setSavingLead(true);
-      await api.post("/counseling", lead);
-
-      localStorage.setItem("counseling_done", "1");
-      setShowCounseling(false);
-    } catch (err) {
-      if (err.response?.status === 409) {
-        alert("This phone number is already registered");
-      } else {
-        alert("Failed to save. Please try again.");
-      }
-    } finally {
-      setSavingLead(false);
-    }
-  };
-
-  /* ===== Data Grouping ===== */
+  /* ================= GROUP DATA ================= */
   const filtered = items.filter(i => i.category === section);
+
   const grouped = filtered.reduce((acc, item) => {
     acc[item.event] = acc[item.event] || [];
     acc[item.event].push(item);
     return acc;
   }, {});
 
-const baseUrl = process.env.REACT_APP_API_URL
-  ? process.env.REACT_APP_API_URL.replace(/\/api$/, "")
-  : "http://localhost:5000";
+  /* ================= BASE URL ================= */
+  const baseUrl = process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL.replace("/api", "")
+    : "http://localhost:5000";
 
+  /* ================= UI ================= */
+  if (loading) return <p style={{ textAlign: "center" }}>Loading gallery...</p>;
 
   return (
     <section className="gallery-simple">
 
-  
-
-      {/* ===== Gallery Header ===== */}
+      {/* ===== HEADER ===== */}
       <header className="gallery-header">
-        <h1>
-          {section === "junior"
-            ? "Junior Wing Gallery"
-            : "Senior Wing Gallery"}
-        </h1>
+        <h1>{section === "junior" ? "Junior Wing Gallery" : "Senior Wing Gallery"}</h1>
 
         <div className="gallery-tabs">
           <button
@@ -114,19 +72,24 @@ const baseUrl = process.env.REACT_APP_API_URL
         </div>
       </header>
 
-      {/* ===== Event Grid ===== */}
+      {/* ================= EVENT GRID ================= */}
       {!selectedEvent && (
         <div className="event-grid">
+          {Object.keys(grouped).length === 0 && (
+            <p style={{ textAlign: "center" }}>No photos available</p>
+          )}
+
           {Object.entries(grouped).map(([event, group]) => (
             <div
               key={event}
               className="event-card"
               onClick={() => setSelectedEvent(event)}
             >
-            <img
-                src={baseUrl + group[0].url}
+              <img
+                src={`${baseUrl}${group[0].url}`}
                 alt={event}
                 loading="lazy"
+                onError={(e) => (e.target.src = "/no-image.png")}
               />
               <div className="event-info">
                 <h3>{event}</h3>
@@ -137,7 +100,7 @@ const baseUrl = process.env.REACT_APP_API_URL
         </div>
       )}
 
-      {/* ===== Photo Gallery ===== */}
+      {/* ================= PHOTO VIEW ================= */}
       {selectedEvent && (
         <div className="photo-gallery">
           <h2>{selectedEvent}</h2>
@@ -147,9 +110,14 @@ const baseUrl = process.env.REACT_APP_API_URL
               <div
                 key={idx}
                 className="photo-box"
-                onClick={() => setModalImage(baseUrl + photo.url)}
+                onClick={() => setModalImage(`${baseUrl}${photo.url}`)}
               >
-                 <img src={baseUrl + photo.url} alt="" loading="lazy" />
+                <img
+                  src={`${baseUrl}${photo.url}`}
+                  alt=""
+                  loading="lazy"
+                  onError={(e) => (e.target.src = "/no-image.png")}
+                />
               </div>
             ))}
           </div>
@@ -160,19 +128,18 @@ const baseUrl = process.env.REACT_APP_API_URL
         </div>
       )}
 
-      {/* ===== Image Modal ===== */}
-     {modalImage && (
-  <div className="modal-full" onClick={() => setModalImage(null)}>
-    <img
-      src={modalImage}
-      alt="Preview"
-      className="modal-image"
-      onClick={(e) => e.stopPropagation()}
-    />
-    <span className="close-btn" onClick={() => setModalImage(null)}>✕</span>
-  </div>
-)}
-
+      {/* ================= FULL IMAGE MODAL ================= */}
+      {modalImage && (
+        <div className="modal-full" onClick={() => setModalImage(null)}>
+          <img
+            src={modalImage}
+            alt="Preview"
+            className="modal-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <span className="close-btn" onClick={() => setModalImage(null)}>×</span>
+        </div>
+      )}
     </section>
   );
 }
