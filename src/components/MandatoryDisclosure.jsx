@@ -1,4 +1,3 @@
-// src/components/Mandatory.js
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import "../styles/Mandatory.css";
@@ -15,7 +14,7 @@ const MandatoryDisclosure = () => {
   });
 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
@@ -23,10 +22,16 @@ const MandatoryDisclosure = () => {
 
     const fetchData = async () => {
       try {
-        const res = await api.get("/disclosures", { signal: controller.signal });
+        const res = await api.get("/public/disclosures", {
+          signal: controller.signal,
+        });
+
         setData(res.data || {});
       } catch (err) {
-        if (err.name !== "AbortError") setError("Unable to load data");
+        if (!err.name === "AbortError") {
+          console.error("Disclosure fetch error:", err);
+          setError("Failed to load disclosure data");
+        }
       } finally {
         setLoading(false);
       }
@@ -36,7 +41,7 @@ const MandatoryDisclosure = () => {
     return () => controller.abort();
   }, []);
 
-  if (loading) return <p className="loading">Loading...</p>;
+  if (loading) return <p className="loading">Loading disclosure data...</p>;
   if (error) return <p className="error">{error}</p>;
 
   const Section = ({ id, title, children }) => (
@@ -61,225 +66,156 @@ const MandatoryDisclosure = () => {
 
       {/* GENERAL INFORMATION */}
       <Section id="general" title="GENERAL INFORMATION">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Information</th>
-              <th>Detail</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.generalInfo?.length ? (
-              data.generalInfo.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{item.info}</td>
-                  <td>{item.detail}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3">No general information available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Information", "Detail"]}
+          data={data.generalInfo}
+          renderRow={(item, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{item.info}</td>
+              <td>{item.detail}</td>
+            </>
+          )}
+        />
       </Section>
 
       {/* DOCUMENTS */}
       <Section id="documents" title="DOCUMENTS AND INFORMATION">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Document</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.documents?.length ? (
-              data.documents.map((doc, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{doc.name}</td>
-                  <td>
-                    {doc.pdfUrl ? (
-                      <a href={doc.pdfUrl} target="_blank" rel="noreferrer">
-                        VIEW
-                      </a>
-                    ) : (
-                      "Not available"
-                    )}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3">No documents found.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Document", "Action"]}
+          data={data.documents}
+          renderRow={(item, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{item.name}</td>
+              <td>
+                {item.pdfUrl ? (
+                  <a href={item.pdfUrl} target="_blank" rel="noreferrer">
+                    VIEW
+                  </a>
+                ) : (
+                  "Not available"
+                )}
+              </td>
+            </>
+          )}
+        />
       </Section>
 
       {/* ACADEMIC */}
       <Section id="academic" title="ACADEMIC INFORMATION">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.academic?.length ? (
-              data.academic.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{item.title}</td>
-                  <td>
-                    {item.pdfUrl ? (
-                      <a href={item.pdfUrl} target="_blank">
-                        VIEW
-                      </a>
-                    ) : (
-                      "—"
-                    )}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3">No academic information available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Title", "Action"]}
+          data={data.academic}
+          renderRow={(item, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{item.title}</td>
+              <td>
+                {item.pdfUrl ? (
+                  <a href={item.pdfUrl} target="_blank" rel="noreferrer">
+                    VIEW
+                  </a>
+                ) : (
+                  "—"
+                )}
+              </td>
+            </>
+          )}
+        />
       </Section>
 
       {/* RESULT X */}
       <Section id="resultX" title="RESULT CLASS X">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Year</th>
-              <th>Registered</th>
-              <th>Passed</th>
-              <th>Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.resultX?.length ? (
-              data.resultX.map((r, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{r.year}</td>
-                  <td>{r.registered}</td>
-                  <td>{r.passed}</td>
-                  <td>{r.percentage}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5">No class X results available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Year", "Registered", "Passed", "Percentage"]}
+          data={data.resultX}
+          renderRow={(r, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{r.year}</td>
+              <td>{r.registered}</td>
+              <td>{r.passed}</td>
+              <td>{r.percentage}</td>
+            </>
+          )}
+        />
       </Section>
 
       {/* RESULT XII */}
       <Section id="resultXII" title="RESULT CLASS XII">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Year</th>
-              <th>Registered</th>
-              <th>Passed</th>
-              <th>Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.resultXII?.length ? (
-              data.resultXII.map((r, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{r.year}</td>
-                  <td>{r.registered}</td>
-                  <td>{r.passed}</td>
-                  <td>{r.percentage}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5">No class XII results available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Year", "Registered", "Passed", "Percentage"]}
+          data={data.resultXII}
+          renderRow={(r, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{r.year}</td>
+              <td>{r.registered}</td>
+              <td>{r.passed}</td>
+              <td>{r.percentage}</td>
+            </>
+          )}
+        />
       </Section>
 
       {/* STAFF */}
       <Section id="staff" title="STAFF (TEACHING)">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Information</th>
-              <th>Detail</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.staff?.length ? (
-              data.staff.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{item.info}</td>
-                  <td>{item.detail}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3">No staff data available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Information", "Detail"]}
+          data={data.staff}
+          renderRow={(item, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{item.info}</td>
+              <td>{item.detail}</td>
+            </>
+          )}
+        />
       </Section>
 
-      {/* INFRA */}
+      {/* INFRASTRUCTURE */}
       <Section id="infra" title="SCHOOL INFRASTRUCTURE">
-        <table className="disclosure-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Information</th>
-              <th>Detail</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.infrastructure?.length ? (
-              data.infrastructure.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{idx + 1}</td>
-                  <td>{item.info}</td>
-                  <td>{item.detail}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="3">No infrastructure info available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        <Table
+          headers={["#", "Information", "Detail"]}
+          data={data.infrastructure}
+          renderRow={(item, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{item.info}</td>
+              <td>{item.detail}</td>
+            </>
+          )}
+        />
       </Section>
     </section>
   );
 };
+
+/* ===================== REUSABLE TABLE ===================== */
+const Table = ({ headers, data = [], renderRow }) => (
+  <table className="disclosure-table">
+    <thead>
+      <tr>
+        {headers.map((h, i) => (
+          <th key={i}>{h}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {data.length ? (
+        data.map((item, i) => (
+          <tr key={i}>{renderRow(item, i)}</tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={headers.length} style={{ textAlign: "center" }}>
+            No data available
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+);
 
 export default MandatoryDisclosure;
