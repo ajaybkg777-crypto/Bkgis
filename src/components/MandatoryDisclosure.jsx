@@ -80,33 +80,33 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* DOCUMENTS */}
-      <Section id="documents" title="DOCUMENTS AND INFORMATION">
-        <Table
-          headers={["#", "Document", "Action"]}
-          data={data.documents}
-          renderRow={(item, i) => (
-            <>
-              <td>{i + 1}</td>
-              <td>{item.name}</td>
-              <td>
-                {item.pdfUrl ? (
-                 <a
-  href={`${process.env.REACT_APP_API_URL}${doc.pdfUrl}`}
-  target="_blank"
-  rel="noreferrer"
->
-  VIEW
-</a>
-
-                ) : (
-                  "Not available"
-                )}
-              </td>
-            </>
+     {/* DOCUMENTS */}
+<Section id="documents" title="DOCUMENTS AND INFORMATION">
+  <Table
+    headers={["#", "Document", "Action"]}
+    data={data.documents}
+    renderRow={(item, i) => (
+      <>
+        <td>{i + 1}</td>
+        <td>{item.name}</td>
+        <td>
+          {item.pdfUrl ? (
+            <a
+              href={`${process.env.REACT_APP_API_URL}${item.pdfUrl}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              VIEW
+            </a>
+          ) : (
+            "Not available"
           )}
-        />
-      </Section>
+        </td>
+      </>
+    )}
+  />
+</Section>
+
 
       {/* ACADEMIC */}
       <Section id="academic" title="ACADEMIC INFORMATION">
