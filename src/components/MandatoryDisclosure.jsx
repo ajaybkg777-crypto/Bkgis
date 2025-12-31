@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import api from "../api";
 import "../styles/Mandatory.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "";
+
 const MandatoryDisclosure = () => {
   const [data, setData] = useState({
     generalInfo: [],
@@ -25,10 +27,9 @@ const MandatoryDisclosure = () => {
         const res = await api.get("/public/disclosures", {
           signal: controller.signal,
         });
-
         setData(res.data || {});
       } catch (err) {
-        if (!err.name === "AbortError") {
+        if (err.name !== "AbortError") {
           console.error("Disclosure fetch error:", err);
           setError("Failed to load disclosure data");
         }
@@ -64,7 +65,7 @@ const MandatoryDisclosure = () => {
     <section className="disclosure-section">
       <h2 className="disclosure-title">MANDATORY PUBLIC DISCLOSURE</h2>
 
-      {/* GENERAL INFORMATION */}
+      {/* GENERAL INFO */}
       <Section id="general" title="GENERAL INFORMATION">
         <Table
           headers={["#", "Information", "Detail"]}
@@ -90,14 +91,13 @@ const MandatoryDisclosure = () => {
               <td>{item.name}</td>
               <td>
                 {item.pdfUrl ? (
-                 <a
-  href={`${process.env.REACT_APP_API_URL}${doc.pdfUrl}`}
-  target="_blank"
-  rel="noreferrer"
->
-  VIEW
-</a>
-
+                  <a
+                    href={`${API_URL}${item.pdfUrl}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    VIEW
+                  </a>
                 ) : (
                   "Not available"
                 )}
@@ -119,13 +119,12 @@ const MandatoryDisclosure = () => {
               <td>
                 {item.pdfUrl ? (
                   <a
-  href={`${process.env.REACT_APP_API_URL}${doc.pdfUrl}`}
-  target="_blank"
-  rel="noreferrer"
->
-  VIEW
-</a>
-
+                    href={`${API_URL}${item.pdfUrl}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    VIEW
+                  </a>
                 ) : (
                   "—"
                 )}
@@ -184,7 +183,7 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* INFRASTRUCTURE */}
+      {/* INFRA */}
       <Section id="infra" title="SCHOOL INFRASTRUCTURE">
         <Table
           headers={["#", "Information", "Detail"]}
@@ -202,8 +201,8 @@ const MandatoryDisclosure = () => {
   );
 };
 
-/* ===================== REUSABLE TABLE ===================== */
-const Table = ({ headers, data = [], renderRow }) => (
+/* ========= REUSABLE TABLE ========= */
+const Table = ({ headers, data, renderRow }) => (
   <table className="disclosure-table">
     <thead>
       <tr>
@@ -214,9 +213,7 @@ const Table = ({ headers, data = [], renderRow }) => (
     </thead>
     <tbody>
       {data.length ? (
-        data.map((item, i) => (
-          <tr key={i}>{renderRow(item, i)}</tr>
-        ))
+        data.map((item, i) => <tr key={i}>{renderRow(item, i)}</tr>)
       ) : (
         <tr>
           <td colSpan={headers.length} style={{ textAlign: "center" }}>
