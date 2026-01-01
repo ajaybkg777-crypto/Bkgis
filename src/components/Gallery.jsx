@@ -9,9 +9,6 @@ export default function Gallery() {
   const [modalImage, setModalImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const BASE_URL =
-    process.env.REACT_APP_API_URL || "https://bkgis-backend.onrender.com";
-
   /* ================= FETCH GALLERY ================= */
   useEffect(() => {
     const fetchGallery = async () => {
@@ -29,7 +26,7 @@ export default function Gallery() {
   }, []);
 
   /* ================= GROUP DATA ================= */
-  const filtered = items.filter((i) => i.category === section);
+  const filtered = items.filter(i => i.category === section);
 
   const grouped = filtered.reduce((acc, item) => {
     acc[item.event] = acc[item.event] || [];
@@ -69,7 +66,7 @@ export default function Gallery() {
         </div>
       </header>
 
-      {/* ================= EVENT GRID ================= */}
+      {/* EVENT GRID */}
       {!selectedEvent && (
         <div className="event-grid">
           {Object.keys(grouped).length === 0 && (
@@ -83,7 +80,7 @@ export default function Gallery() {
               onClick={() => setSelectedEvent(event)}
             >
               <img
-                src={`${BASE_URL}${group[0].url}`}
+                src={group[0].url}   // ✅ FIXED
                 alt={event}
                 onError={(e) => (e.target.src = "/no-image.png")}
               />
@@ -96,7 +93,7 @@ export default function Gallery() {
         </div>
       )}
 
-      {/* ================= PHOTO VIEW ================= */}
+      {/* PHOTO VIEW */}
       {selectedEvent && (
         <div className="photo-gallery">
           <h2>{selectedEvent}</h2>
@@ -106,10 +103,10 @@ export default function Gallery() {
               <div
                 key={idx}
                 className="photo-box"
-                onClick={() => setModalImage(`${BASE_URL}${photo.url}`)}
+                onClick={() => setModalImage(photo.url)}
               >
                 <img
-                  src={`${BASE_URL}${photo.url}`}
+                  src={photo.url}
                   alt=""
                   onError={(e) => (e.target.src = "/no-image.png")}
                 />
@@ -123,7 +120,7 @@ export default function Gallery() {
         </div>
       )}
 
-      {/* ================= FULL IMAGE MODAL ================= */}
+      {/* FULL IMAGE MODAL */}
       {modalImage && (
         <div className="modal-full" onClick={() => setModalImage(null)}>
           <img
@@ -132,9 +129,7 @@ export default function Gallery() {
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
-          <span className="close-btn" onClick={() => setModalImage(null)}>
-            ×
-          </span>
+          <span className="close-btn" onClick={() => setModalImage(null)}>×</span>
         </div>
       )}
     </section>
