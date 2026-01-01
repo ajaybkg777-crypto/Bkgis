@@ -9,6 +9,9 @@ export default function Gallery() {
   const [modalImage, setModalImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const BASE_URL =
+    process.env.REACT_APP_API_URL || "https://bkgis-backend.onrender.com";
+
   /* ================= FETCH GALLERY ================= */
   useEffect(() => {
     const fetchGallery = async () => {
@@ -26,7 +29,7 @@ export default function Gallery() {
   }, []);
 
   /* ================= GROUP DATA ================= */
-  const filtered = items.filter(i => i.category === section);
+  const filtered = items.filter((i) => i.category === section);
 
   const grouped = filtered.reduce((acc, item) => {
     acc[item.event] = acc[item.event] || [];
@@ -34,18 +37,12 @@ export default function Gallery() {
     return acc;
   }, {});
 
-  /* ================= BASE URL ================= */
-  const baseUrl = process.env.REACT_APP_API_URL
-    ? process.env.REACT_APP_API_URL.replace("/api", "")
-    : "http://localhost:5000";
-
-  /* ================= UI ================= */
   if (loading) return <p style={{ textAlign: "center" }}>Loading gallery...</p>;
 
   return (
     <section className="gallery-simple">
 
-      {/* ===== HEADER ===== */}
+      {/* HEADER */}
       <header className="gallery-header">
         <h1>{section === "junior" ? "Junior Wing Gallery" : "Senior Wing Gallery"}</h1>
 
@@ -86,9 +83,8 @@ export default function Gallery() {
               onClick={() => setSelectedEvent(event)}
             >
               <img
-                src={`${baseUrl}${group[0].url}`}
+                src={`${BASE_URL}${group[0].url}`}
                 alt={event}
-                loading="lazy"
                 onError={(e) => (e.target.src = "/no-image.png")}
               />
               <div className="event-info">
@@ -110,12 +106,11 @@ export default function Gallery() {
               <div
                 key={idx}
                 className="photo-box"
-                onClick={() => setModalImage(`${baseUrl}${photo.url}`)}
+                onClick={() => setModalImage(`${BASE_URL}${photo.url}`)}
               >
                 <img
-                  src={`${baseUrl}${photo.url}`}
+                  src={`${BASE_URL}${photo.url}`}
                   alt=""
-                  loading="lazy"
                   onError={(e) => (e.target.src = "/no-image.png")}
                 />
               </div>
@@ -137,7 +132,9 @@ export default function Gallery() {
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
-          <span className="close-btn" onClick={() => setModalImage(null)}>×</span>
+          <span className="close-btn" onClick={() => setModalImage(null)}>
+            ×
+          </span>
         </div>
       )}
     </section>
