@@ -95,13 +95,14 @@ const MandatoryDisclosure = () => {
               <td>{item.name}</td>
               <td>
                 {item.pdfUrl ? (
-                  <a
-                    href={getPdfLink(item.pdfUrl)}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    VIEW
-                  </a>
+                 <a
+  href={`${item.pdfUrl}?fl_inline`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  VIEW
+</a>
+
                 ) : (
                   "Not available"
                 )}
