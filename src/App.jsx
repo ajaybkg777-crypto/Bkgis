@@ -40,7 +40,7 @@ import Toppers from "./components/Academics/Toppers";
 import Curriculum from "./components/Academics/Curriculum";
 
 
-import PdfViewer from "./pages/PdfViewer";
+import PdfViewer from "./components/PdfViewer";
 
 <Route path="/pdf-view/:index" element={<PdfViewer />} />
 
