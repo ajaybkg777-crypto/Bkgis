@@ -4,33 +4,38 @@ import { useParams } from "react-router-dom";
 const PdfViewer = () => {
   const { index } = useParams();
   const [pdfSrc, setPdfSrc] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const loadPdf = async () => {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/pdf/view/${index}`
-      );
+      try {
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/pdf/view/${index}`
+        );
 
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
+        if (!res.ok) {
+          throw new Error("PDF not found");
+        }
 
-      setPdfSrc(blobUrl);
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        setPdfSrc(blobUrl);
+      } catch (err) {
+        setError("Unable to load PDF");
+      }
     };
 
     loadPdf();
   }, [index]);
 
+  if (error) return <p style={{ textAlign: "center" }}>{error}</p>;
   if (!pdfSrc) return <p style={{ textAlign: "center" }}>Loading PDF…</p>;
 
   return (
     <iframe
       src={pdfSrc}
       title="PDF Viewer"
-      style={{
-        width: "100%",
-        height: "100vh",
-        border: "none",
-      }}
+      style={{ width: "100%", height: "100vh", border: "none" }}
     />
   );
 };
