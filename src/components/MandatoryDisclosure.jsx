@@ -95,8 +95,8 @@ const MandatoryDisclosure = () => {
               <td>{item.name}</td>
               <td>
                 {item.pdfUrl ? (
-               <a
-  href={`${item.pdfUrl}?response-content-type=application/pdf&response-content-disposition=inline`}
+             <a
+  href={`${process.env.REACT_APP_API_URL}/api/pdf/view/${i}`}
   target="_blank"
   rel="noopener noreferrer"
 >
