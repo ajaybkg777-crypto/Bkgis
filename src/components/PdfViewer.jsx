@@ -14,13 +14,16 @@ const PdfViewer = () => {
         );
 
         if (!res.ok) {
-          throw new Error("PDF not found");
+          throw new Error(`HTTP ${res.status}`);
         }
 
         const blob = await res.blob();
         const blobUrl = URL.createObjectURL(blob);
+
+        // ✅ iframe ke liye
         setPdfSrc(blobUrl);
       } catch (err) {
+        console.error(err);
         setError("Unable to load PDF");
       }
     };
@@ -28,14 +31,23 @@ const PdfViewer = () => {
     loadPdf();
   }, [index]);
 
-  if (error) return <p style={{ textAlign: "center" }}>{error}</p>;
-  if (!pdfSrc) return <p style={{ textAlign: "center" }}>Loading PDF…</p>;
+  if (error) {
+    return <p style={{ textAlign: "center" }}>{error}</p>;
+  }
+
+  if (!pdfSrc) {
+    return <p style={{ textAlign: "center" }}>Loading PDF…</p>;
+  }
 
   return (
     <iframe
       src={pdfSrc}
       title="PDF Viewer"
-      style={{ width: "100%", height: "100vh", border: "none" }}
+      style={{
+        width: "100%",
+        height: "100vh",
+        border: "none",
+      }}
     />
   );
 };
