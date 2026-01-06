@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const PdfViewer = () => {
   const { index } = useParams();
+  const [pdfSrc, setPdfSrc] = useState(null);
 
   useEffect(() => {
     const loadPdf = async () => {
@@ -13,14 +14,25 @@ const PdfViewer = () => {
       const blob = await res.blob();
       const blobUrl = URL.createObjectURL(blob);
 
-      // 🔥 OPEN PDF WITHOUT SHOWING BACKEND URL
-      window.location.replace(blobUrl);
+      setPdfSrc(blobUrl);
     };
 
     loadPdf();
   }, [index]);
 
-  return <p style={{ textAlign: "center" }}>Loading PDF…</p>;
+  if (!pdfSrc) return <p style={{ textAlign: "center" }}>Loading PDF…</p>;
+
+  return (
+    <iframe
+      src={pdfSrc}
+      title="PDF Viewer"
+      style={{
+        width: "100%",
+        height: "100vh",
+        border: "none",
+      }}
+    />
+  );
 };
 
 export default PdfViewer;
