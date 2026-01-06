@@ -30,7 +30,7 @@ const MandatoryDisclosure = () => {
         setData(res.data || {});
       } catch (err) {
         if (err.name !== "AbortError") {
-          console.error("Disclosure fetch error:", err);
+          console.error(err);
           setError("Failed to load disclosure data");
         }
       } finally {
@@ -45,6 +45,11 @@ const MandatoryDisclosure = () => {
   if (loading) return <p className="loading">Loading disclosure data...</p>;
   if (error) return <p className="error">{error}</p>;
 
+  const getPdfLink = (url) => {
+    if (!url) return null;
+    return url.startsWith("http") ? url : API_URL + url;
+  };
+
   const Section = ({ id, title, children }) => (
     <div className="disclosure-box">
       <h3
@@ -54,7 +59,6 @@ const MandatoryDisclosure = () => {
         {title}
         <span className="chev">{openIndex === id ? "▲" : "▼"}</span>
       </h3>
-
       <div className={`section-content ${openIndex === id ? "open" : ""}`}>
         <div className="section-inner">{children}</div>
       </div>
@@ -80,33 +84,32 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-     {/* DOCUMENTS */}
-<Section id="documents" title="DOCUMENTS AND INFORMATION">
-  <Table
-    headers={["#", "Document", "Action"]}
-    data={data.documents}
-    renderRow={(item, i) => (
-      <>
-        <td>{i + 1}</td>
-        <td>{item.name}</td>
-        <td>
-          {item.pdfUrl ? (
-            <a
-              href={`${process.env.REACT_APP_API_URL}${item.pdfUrl}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              VIEW
-            </a>
-          ) : (
-            "Not available"
+      {/* DOCUMENTS */}
+      <Section id="documents" title="DOCUMENTS AND INFORMATION">
+        <Table
+          headers={["#", "Document", "Action"]}
+          data={data.documents}
+          renderRow={(item, i) => (
+            <>
+              <td>{i + 1}</td>
+              <td>{item.name}</td>
+              <td>
+                {item.pdfUrl ? (
+                  <a
+                    href={getPdfLink(item.pdfUrl)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    VIEW
+                  </a>
+                ) : (
+                  "Not available"
+                )}
+              </td>
+            </>
           )}
-        </td>
-      </>
-    )}
-  />
-</Section>
-
+        />
+      </Section>
 
       {/* ACADEMIC */}
       <Section id="academic" title="ACADEMIC INFORMATION">
@@ -120,7 +123,7 @@ const MandatoryDisclosure = () => {
               <td>
                 {item.pdfUrl ? (
                   <a
-                    href={`${API_URL}${item.pdfUrl}`}
+                    href={getPdfLink(item.pdfUrl)}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -202,7 +205,7 @@ const MandatoryDisclosure = () => {
   );
 };
 
-/* ========= REUSABLE TABLE ========= */
+/* ===== TABLE COMPONENT ===== */
 const Table = ({ headers, data, renderRow }) => (
   <table className="disclosure-table">
     <thead>
@@ -213,7 +216,7 @@ const Table = ({ headers, data, renderRow }) => (
       </tr>
     </thead>
     <tbody>
-      {data.length ? (
+      {data?.length ? (
         data.map((item, i) => <tr key={i}>{renderRow(item, i)}</tr>)
       ) : (
         <tr>
