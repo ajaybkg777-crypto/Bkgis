@@ -40,9 +40,6 @@ import Toppers from "./components/Academics/Toppers";
 import Curriculum from "./components/Academics/Curriculum";
 
 
-
-<Route path="/pdf-view/:index" element={<PdfViewer />} />
-
 /* ============ LAYOUT ============ */
 function PublicLayout({ children }) {
   return (
