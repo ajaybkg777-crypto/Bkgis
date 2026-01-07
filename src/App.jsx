@@ -1,17 +1,16 @@
 // src/App.js
-import React, { Suspense, lazy } from "react";
+import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CounselingPopup from "./components/CounselingPopup";
 
-// Public pages
+/* ===== PUBLIC PAGES ===== */
 import Homepage from "./components/Homepage";
 import DailyUpdates from "./components/DailyUpdates";
 import ResultsSearch from "./components/ResultsSearch";
@@ -22,7 +21,7 @@ import MandatoryDisclosure from "./components/MandatoryDisclosure";
 import ContactUs from "./components/ContactUs";
 import TCForm from "./components/TCForm";
 
-// Facilities
+/* ===== FACILITIES ===== */
 import Facilities from "./components/Facilities";
 import ComputerLab from "./components/Facilities/ComputerLab";
 import ScienceLab from "./components/Facilities/ScienceLab";
@@ -32,13 +31,12 @@ import Mess from "./components/Facilities/Mess";
 import Sports from "./components/Facilities/Sports";
 import MusicRoom from "./components/Facilities/MusicRoom";
 
-// Academics
+/* ===== ACADEMICS ===== */
 import Academics from "./components/Academics";
 import AdmissionForm from "./components/Academics/AdmissionForm";
 import BooksList from "./components/Academics/BooksList";
 import Toppers from "./components/Academics/Toppers";
 import Curriculum from "./components/Academics/Curriculum";
-
 
 /* ============ LAYOUT ============ */
 function PublicLayout({ children }) {
@@ -68,11 +66,7 @@ export default function App() {
           <Route path="/about" element={<PublicLayout><AboutUs /></PublicLayout>} />
           <Route path="/contact" element={<PublicLayout><ContactUs /></PublicLayout>} />
           <Route path="/mandatory" element={<PublicLayout><MandatoryDisclosure /></PublicLayout>} />
-          <Route
-  path="/tc"
-  element={<PublicLayout><TCForm /></PublicLayout>}
-/>
-
+          <Route path="/tc" element={<PublicLayout><TCForm /></PublicLayout>} />
 
           {/* FACILITIES */}
           <Route path="/facilities" element={<PublicLayout><Facilities /></PublicLayout>} />
@@ -90,7 +84,8 @@ export default function App() {
           <Route path="/academics/books" element={<PublicLayout><BooksList /></PublicLayout>} />
           <Route path="/academics/toppers" element={<PublicLayout><Toppers /></PublicLayout>} />
           <Route path="/academics/curriculum" element={<PublicLayout><Curriculum /></PublicLayout>} />
-    
+
+          {/* 404 */}
           <Route
             path="*"
             element={
