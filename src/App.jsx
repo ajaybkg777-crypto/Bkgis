@@ -40,7 +40,6 @@ import Toppers from "./components/Academics/Toppers";
 import Curriculum from "./components/Academics/Curriculum";
 
 
-import PdfViewer from "./components/PdfViewer";
 
 <Route path="/pdf-view/:index" element={<PdfViewer />} />
 
@@ -94,8 +93,7 @@ export default function App() {
           <Route path="/academics/books" element={<PublicLayout><BooksList /></PublicLayout>} />
           <Route path="/academics/toppers" element={<PublicLayout><Toppers /></PublicLayout>} />
           <Route path="/academics/curriculum" element={<PublicLayout><Curriculum /></PublicLayout>} />
-            <Route path="/pdf-view/:index" element={<PdfViewer />} />
-          {/* 404 */}
+    
           <Route
             path="*"
             element={
