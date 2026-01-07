@@ -2,16 +2,72 @@ import React, { useEffect, useState } from "react";
 import api from "../api";
 import "../styles/Mandatory.css";
 
+/* ================= CONSTANTS ================= */
 const EMPTY_STATE = {
   generalInfo: [],
   documents: [],
-  academic: [],
   resultX: [],
   resultXII: [],
   staff: [],
   infrastructure: [],
 };
 
+/* ================= HELPERS ================= */
+const getPdfLink = (url) => {
+  if (!url) return null;
+  if (url.startsWith("http")) return url;
+
+  // ✅ SAFE fallback (prevents build crash)
+  return process.env.REACT_APP_API_URL
+    ? `${process.env.REACT_APP_API_URL}${url}`
+    : url;
+};
+
+/* ================= SECTION COMPONENT ================= */
+const Section = ({ id, title, openSection, setOpenSection, children }) => (
+  <div className="disclosure-box">
+    <h3
+      className="section-heading"
+      onClick={() => setOpenSection(openSection === id ? null : id)}
+    >
+      {title}
+      <span className="chev">{openSection === id ? "▲" : "▼"}</span>
+    </h3>
+
+    <div className={`section-content ${openSection === id ? "open" : ""}`}>
+      <div className="section-inner">{children}</div>
+    </div>
+  </div>
+);
+
+/* ================= TABLE COMPONENT ================= */
+const Table = ({ headers, data = [], renderRow }) => (
+  <table className="disclosure-table">
+    <thead>
+      <tr>
+        {headers.map((h, i) => (
+          <th key={i}>{h}</th>
+        ))}
+      </tr>
+    </thead>
+
+    <tbody>
+      {data.length > 0 ? (
+        data.map((item, i) => (
+          <tr key={i}>{renderRow(item, i)}</tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={headers.length} className="no-data">
+            No data available
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+);
+
+/* ================= MAIN COMPONENT ================= */
 const MandatoryDisclosure = () => {
   const [data, setData] = useState(EMPTY_STATE);
   const [loading, setLoading] = useState(true);
@@ -45,36 +101,16 @@ const MandatoryDisclosure = () => {
   if (loading) return <p className="loading">Loading disclosure data…</p>;
   if (error) return <p className="error">{error}</p>;
 
-  /* ✅ Handles both Cloudinary + local PDFs */
-  const getPdfLink = (url) => {
-    if (!url) return null;
-    return url.startsWith("http")
-      ? url
-      : `${process.env.REACT_APP_API_URL}${url}`;
-  };
-
-  const Section = ({ id, title, children }) => (
-    <div className="disclosure-box">
-      <h3
-        className="section-heading"
-        onClick={() => setOpenSection(openSection === id ? null : id)}
-      >
-        {title}
-        <span className="chev">{openSection === id ? "▲" : "▼"}</span>
-      </h3>
-
-      <div className={`section-content ${openSection === id ? "open" : ""}`}>
-        <div className="section-inner">{children}</div>
-      </div>
-    </div>
-  );
-
   return (
     <section className="disclosure-section">
       <h2 className="disclosure-title">MANDATORY PUBLIC DISCLOSURE</h2>
 
-      {/* GENERAL INFO */}
-      <Section id="general" title="GENERAL INFORMATION">
+      <Section
+        id="general"
+        title="GENERAL INFORMATION"
+        openSection={openSection}
+        setOpenSection={setOpenSection}
+      >
         <Table
           headers={["#", "Information", "Detail"]}
           data={data.generalInfo}
@@ -88,8 +124,12 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* DOCUMENTS */}
-      <Section id="documents" title="DOCUMENTS AND INFORMATION">
+      <Section
+        id="documents"
+        title="DOCUMENTS AND INFORMATION"
+        openSection={openSection}
+        setOpenSection={setOpenSection}
+      >
         <Table
           headers={["#", "Document", "Action"]}
           data={data.documents}
@@ -115,8 +155,12 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* RESULT X */}
-      <Section id="resultX" title="RESULT CLASS X">
+      <Section
+        id="resultX"
+        title="RESULT CLASS X"
+        openSection={openSection}
+        setOpenSection={setOpenSection}
+      >
         <Table
           headers={["#", "Year", "Registered", "Passed", "Percentage"]}
           data={data.resultX}
@@ -132,8 +176,12 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* RESULT XII */}
-      <Section id="resultXII" title="RESULT CLASS XII">
+      <Section
+        id="resultXII"
+        title="RESULT CLASS XII"
+        openSection={openSection}
+        setOpenSection={setOpenSection}
+      >
         <Table
           headers={["#", "Year", "Registered", "Passed", "Percentage"]}
           data={data.resultXII}
@@ -149,8 +197,12 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* STAFF */}
-      <Section id="staff" title="STAFF (TEACHING)">
+      <Section
+        id="staff"
+        title="STAFF (TEACHING)"
+        openSection={openSection}
+        setOpenSection={setOpenSection}
+      >
         <Table
           headers={["#", "Information", "Detail"]}
           data={data.staff}
@@ -164,8 +216,12 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
-      {/* INFRASTRUCTURE */}
-      <Section id="infra" title="SCHOOL INFRASTRUCTURE">
+      <Section
+        id="infra"
+        title="SCHOOL INFRASTRUCTURE"
+        openSection={openSection}
+        setOpenSection={setOpenSection}
+      >
         <Table
           headers={["#", "Information", "Detail"]}
           data={data.infrastructure}
@@ -181,30 +237,5 @@ const MandatoryDisclosure = () => {
     </section>
   );
 };
-
-/* ================= TABLE COMPONENT ================= */
-const Table = ({ headers, data = [], renderRow }) => (
-  <table className="disclosure-table">
-    <thead>
-      <tr>
-        {headers.map((h, i) => (
-          <th key={i}>{h}</th>
-        ))}
-      </tr>
-    </thead>
-
-    <tbody>
-      {data.length ? (
-        data.map((item, i) => <tr key={i}>{renderRow(item, i)}</tr>)
-      ) : (
-        <tr>
-          <td colSpan={headers.length} className="no-data">
-            No data available
-          </td>
-        </tr>
-      )}
-    </tbody>
-  </table>
-);
 
 export default MandatoryDisclosure;
