@@ -95,8 +95,8 @@ const MandatoryDisclosure = () => {
               <td>{item.name}</td>
               <td>
                 {item.pdfUrl ? (
-            <a
-  href={`/pdf-view/${i}`}
+          <a
+  href={item.pdfUrl}
   target="_blank"
   rel="noopener noreferrer"
 >
