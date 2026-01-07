@@ -2,36 +2,32 @@ import React, { useEffect, useState } from "react";
 import api from "../api";
 import "../styles/Mandatory.css";
 
-const MandatoryDisclosure = () => {
-  const emptyState = {
-    generalInfo: [],
-    documents: [],
-    academic: [],
-    resultX: [],
-    resultXII: [],
-    staff: [],
-    infrastructure: [],
-  };
+const EMPTY_STATE = {
+  generalInfo: [],
+  documents: [],
+  academic: [],
+  resultX: [],
+  resultXII: [],
+  staff: [],
+  infrastructure: [],
+};
 
-  const [data, setData] = useState(emptyState);
+const MandatoryDisclosure = () => {
+  const [data, setData] = useState(EMPTY_STATE);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openSection, setOpenSection] = useState(null);
 
   useEffect(() => {
     const controller = new AbortController();
 
-    const fetchData = async () => {
+    const fetchDisclosure = async () => {
       try {
         const res = await api.get("/public/disclosures", {
           signal: controller.signal,
         });
 
-        // ✅ SAFE MERGE (IMPORTANT FIX)
-        setData({
-          ...emptyState,
-          ...(res.data || {}),
-        });
+        setData({ ...EMPTY_STATE, ...(res.data || {}) });
       } catch (err) {
         if (err.name !== "AbortError") {
           console.error(err);
@@ -42,26 +38,32 @@ const MandatoryDisclosure = () => {
       }
     };
 
-    fetchData();
+    fetchDisclosure();
     return () => controller.abort();
   }, []);
 
-  if (loading) return <p className="loading">Loading disclosure data...</p>;
+  if (loading) return <p className="loading">Loading disclosure data…</p>;
   if (error) return <p className="error">{error}</p>;
 
-  // ✅ Cloudinary already full URL
-  const getPdfLink = (url) => (url?.startsWith("http") ? url : null);
+  /* ✅ Handles both Cloudinary + local PDFs */
+  const getPdfLink = (url) => {
+    if (!url) return null;
+    return url.startsWith("http")
+      ? url
+      : `${process.env.REACT_APP_API_URL}${url}`;
+  };
 
   const Section = ({ id, title, children }) => (
     <div className="disclosure-box">
       <h3
         className="section-heading"
-        onClick={() => setOpenIndex(openIndex === id ? null : id)}
+        onClick={() => setOpenSection(openSection === id ? null : id)}
       >
         {title}
-        <span className="chev">{openIndex === id ? "▲" : "▼"}</span>
+        <span className="chev">{openSection === id ? "▲" : "▼"}</span>
       </h3>
-      <div className={`section-content ${openIndex === id ? "open" : ""}`}>
+
+      <div className={`section-content ${openSection === id ? "open" : ""}`}>
         <div className="section-inner">{children}</div>
       </div>
     </div>
@@ -71,6 +73,7 @@ const MandatoryDisclosure = () => {
     <section className="disclosure-section">
       <h2 className="disclosure-title">MANDATORY PUBLIC DISCLOSURE</h2>
 
+      {/* GENERAL INFO */}
       <Section id="general" title="GENERAL INFORMATION">
         <Table
           headers={["#", "Information", "Detail"]}
@@ -85,6 +88,7 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
+      {/* DOCUMENTS */}
       <Section id="documents" title="DOCUMENTS AND INFORMATION">
         <Table
           headers={["#", "Document", "Action"]}
@@ -95,17 +99,15 @@ const MandatoryDisclosure = () => {
               <td>{item.name}</td>
               <td>
                 {item.pdfUrl ? (
-          <a
-  href={item.pdfUrl}
-  target="_blank"
-  rel="noopener noreferrer"
->
-  VIEW
-</a>
-
-
+                  <a
+                    href={getPdfLink(item.pdfUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    VIEW
+                  </a>
                 ) : (
-                  "Not available"
+                  <span className="muted">Not available</span>
                 )}
               </td>
             </>
@@ -113,6 +115,7 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
+      {/* RESULT X */}
       <Section id="resultX" title="RESULT CLASS X">
         <Table
           headers={["#", "Year", "Registered", "Passed", "Percentage"]}
@@ -129,6 +132,7 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
+      {/* RESULT XII */}
       <Section id="resultXII" title="RESULT CLASS XII">
         <Table
           headers={["#", "Year", "Registered", "Passed", "Percentage"]}
@@ -145,6 +149,7 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
+      {/* STAFF */}
       <Section id="staff" title="STAFF (TEACHING)">
         <Table
           headers={["#", "Information", "Detail"]}
@@ -159,6 +164,7 @@ const MandatoryDisclosure = () => {
         />
       </Section>
 
+      {/* INFRASTRUCTURE */}
       <Section id="infra" title="SCHOOL INFRASTRUCTURE">
         <Table
           headers={["#", "Information", "Detail"]}
@@ -176,7 +182,7 @@ const MandatoryDisclosure = () => {
   );
 };
 
-/* ===== SAFE TABLE COMPONENT ===== */
+/* ================= TABLE COMPONENT ================= */
 const Table = ({ headers, data = [], renderRow }) => (
   <table className="disclosure-table">
     <thead>
@@ -186,12 +192,13 @@ const Table = ({ headers, data = [], renderRow }) => (
         ))}
       </tr>
     </thead>
+
     <tbody>
-      {data.length > 0 ? (
+      {data.length ? (
         data.map((item, i) => <tr key={i}>{renderRow(item, i)}</tr>)
       ) : (
         <tr>
-          <td colSpan={headers.length} style={{ textAlign: "center" }}>
+          <td colSpan={headers.length} className="no-data">
             No data available
           </td>
         </tr>
