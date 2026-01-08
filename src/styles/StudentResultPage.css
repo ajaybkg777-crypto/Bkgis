@@ -1,147 +1,100 @@
-/* ---------------------------------------------------
-   PAGE BASE
---------------------------------------------------- */
+/* ===================================================
+   BASE (ALL DEVICES)
+=================================================== */
 .result-page {
   font-family: "Poppins", sans-serif;
   background: #f3f6ff;
   min-height: 100vh;
-  padding: 40px 8% !important;
+  padding: 30px 16px;
 }
 
-/* ---------------------------------------------------
-   PAGE HEADER
---------------------------------------------------- */
 .result-header {
   text-align: center;
-   font-size: 2.5rem;
-  margin-bottom: 25px;
+  font-size: 2.3rem;
+  margin-bottom: 22px;
   color: #0f2b63;
 }
 
-
-/* ---------------------------------------------------
+/* ===================================================
    RESULT CARD
---------------------------------------------------- */
+=================================================== */
 .result-card {
   background: #ffffff;
-  padding: 28px;
-  border-radius: 16px;
-  max-width: 850px;
+  padding: 22px;
+  border-radius: 14px;
+  max-width: 900px;
   margin: auto;
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   border-top: 4px solid #ffda79;
 }
 
-/* ---------------------------------------------------
+/* ===================================================
    STUDENT NAME
---------------------------------------------------- */
+=================================================== */
 .student-name {
-  font-size: 2.4rem !important;
+  font-size: 1.9rem;
   font-weight: 700;
   color: #0f2b63;
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-/* ---------------------------------------------------
-   DETAIL ROWS
---------------------------------------------------- */
+/* ===================================================
+   INFO BOX
+=================================================== */
 .info-box {
-  max-width: 850px;
-  margin: 25px auto;
-  padding: 22px 35px;
+  margin: 22px auto;
+  padding: 18px;
   background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   border-top: 4px solid #ffda79;
   display: flex;
-  justify-content: space-between;
-  gap: 25px;
+  gap: 18px;
 }
 
-/* Each field same width for perfect alignment */
 .info-item {
   flex: 1;
   text-align: center;
 }
 
-/* Label */
 .info-item label {
   display: block;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #2b5893;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-/* Value */
 .info-item span {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #0f2b63;
-  padding-bottom: 3px;
   border-bottom: 3px solid #ffda79;
+  padding-bottom: 2px;
   display: inline-block;
-  min-width: 120px;
+  min-width: 90px;
 }
 
-/* Desktop + Tablet */
-@media (min-width: 768px) {
-      .result-desktop-wrapper {
-  width: 600px;
-  height:400px;
-  margin: 0 auto;
-}
-  .info-box {
-    flex-direction: row;
-  }
-}
-
-/* Mobile (currently disabled) */
-@media (max-width: 767px) {
-   .result-desktop-wrapper {
-  width: 600px;
-  height:400px;
-  margin: 0 auto;
-}
-  .info-box {
-    flex-direction: row; /* still desktop */
-  }
-}
-
-
-/* MOBILE PAR SIRF RESULT SCROLL KARE */
-.result-scroll {
-  overflow-x: auto;
-}
-
-/* RESULT KO DESKTOP WIDTH DO */
-.result-desktop-wrapper {
-  width: 1200px;
-  margin: 0 auto;
-}
-
-
-
-
-/* ---------------------------------------------------
-   HIGHLIGHT SUMMARY
---------------------------------------------------- */
+/* ===================================================
+   SUMMARY
+=================================================== */
 .marks-summary {
   background: #edf3ff;
-  padding: 14px 18px;
-  margin-top: 20px;
+  padding: 14px;
+  margin-top: 18px;
   border-radius: 12px;
   display: flex;
+  gap: 12px;
   justify-content: space-between;
   border-left: 5px solid #ffda79;
 }
 
 .marks-summary p {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #0f2b63;
-   text-align: center; 
+  margin: 0;
 }
 
 .grade {
@@ -152,31 +105,30 @@
   font-weight: 700;
 }
 
-/* ---------------------------------------------------
+/* ===================================================
    MARKS TABLE
---------------------------------------------------- */
+=================================================== */
 .marks-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 25px;
+  margin-top: 22px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  text-align: center;     /* ⭐ CENTER all text */
+  text-align: center;
 }
 
 .marks-table th {
-  background:linear-gradient(360deg, #4b79a7, #0f2b63);
+  background: linear-gradient(360deg, #4b79a7, #0f2b63);
   color: #ffffff;
   padding: 12px;
-  font-size: 1rem;
-   text-align: center; 
+  font-size: 0.95rem;
 }
 
 .marks-table td {
-  padding: 12px;
+  padding: 11px;
   border-bottom: 1px solid #e5e7eb;
-  font-size: 1rem !important;
+  font-size: 0.95rem;
   color: #333;
 }
 
@@ -184,20 +136,64 @@
   background: #f8f9ff;
 }
 
-/* ---------------------------------------------------
-   RESPONSIVE
---------------------------------------------------- */
-@media (max-width: 700px) {
-  .row {
-    flex-direction: column;
-    gap: 6px;
-  }
+/* ===================================================
+   DESKTOP / LAPTOP (>=1024px)
+=================================================== */
+@media (min-width: 1024px) {
 
-  .result-card {
-    padding: 20px;
+  .result-page {
+    padding: 40px 8%;
   }
 
   .student-name {
-    font-size: 1.6rem;
+    font-size: 2.3rem;
+  }
+
+  .info-box {
+    flex-direction: row;
+    padding: 22px 35px;
+  }
+
+  .info-item span {
+    font-size: 1.45rem;
+  }
+
+  .marks-summary {
+    flex-direction: row;
+  }
+}
+
+/* ===================================================
+   MOBILE (<=767px)
+=================================================== */
+@media (max-width: 767px) {
+
+  .result-page {
+    padding: 18px 10px;
+  }
+
+  .result-header {
+    font-size: 1.8rem;
+  }
+
+  .student-name {
+    font-size: 1.5rem;
+  }
+
+  .info-box {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .marks-summary {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* TABLE SCROLL ONLY ON MOBILE */
+  .marks-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }
