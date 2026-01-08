@@ -14,15 +14,15 @@ export default function Homepage() {
 
   /* ================= FETCH DATA ================= */
   useEffect(() => {
-    api.get("/announcements")
+    api.get("/public/announcements")
       .then(res => setAnnouncements(res.data.slice(0, 3)))
       .catch(() => {});
 
-    api.get("/gallery")
+    api.get("/public/gallery")
       .then(res => setGallery(res.data.slice(0, 6)))
       .catch(() => {});
 
-    api.get("/calendar")
+    api.get("/public/calendar")
       .then(res =>
         setCalendar(res.data.sort(
           (a, b) => new Date(a.date) - new Date(b.date)
