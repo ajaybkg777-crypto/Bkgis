@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { FaListOl, FaMedal } from "react-icons/fa";
 import "../styles/StudentResultPage.css";
-
+import React, { useEffect } from "react"; 
 export default function StudentResultPage() {
   const { state } = useLocation();
   const r = state?.result;
