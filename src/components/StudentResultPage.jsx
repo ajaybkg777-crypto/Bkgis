@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";   // ✅ useEffect IMPORT
 import { useLocation } from "react-router-dom";
-import { FaListOl, FaMedal } from "react-icons/fa";
+import { FaMedal } from "react-icons/fa";
 import "../styles/StudentResultPage.css";
-import React, { useEffect } from "react"; 
+
 export default function StudentResultPage() {
   const { state } = useLocation();
   const r = state?.result;
- useEffect(() => {
+
+  // ✅ FORCE DESKTOP VIEW ONLY FOR RESULT PAGE
+  useEffect(() => {
     const meta = document.createElement("meta");
     meta.name = "viewport";
     meta.content = "width=1200";
     document.head.appendChild(meta);
 
     return () => {
-      document.head.removeChild(meta); // cleanup
+      document.head.removeChild(meta); // cleanup when leaving page
     };
   }, []);
+
   if (!r) return <h2 className="not-found">No result data available.</h2>;
 
   return (
@@ -24,27 +27,23 @@ export default function StudentResultPage() {
 
       <div className="result-card">
         <h2 className="student-name">{r.name}</h2>
-<div className="info-box">
-  <div className="info-item">
-    <label>Roll No</label>
-    <span>{r.roll}</span>
-  </div>
 
-  <div className="info-item">
-    <label>Class</label>
-    <span>{r.class}</span>
-  </div>
+        <div className="info-box">
+          <div className="info-item">
+            <label>Roll No</label>
+            <span>{r.roll}</span>
+          </div>
 
-  <div className="info-item">
-    <label>Exam</label>
-    <span>{r.exam}</span>
-  </div>
-</div>
+          <div className="info-item">
+            <label>Class</label>
+            <span>{r.class}</span>
+          </div>
 
-
-
-
-
+          <div className="info-item">
+            <label>Exam</label>
+            <span>{r.exam}</span>
+          </div>
+        </div>
 
         <div className="marks-summary">
           <p><FaMedal /> Total Obtained: <b>{r.totalObtained}</b></p>
@@ -61,7 +60,6 @@ export default function StudentResultPage() {
               <th>Out of</th>
             </tr>
           </thead>
-
           <tbody>
             {r.subjectMarks?.map((m, i) => (
               <tr key={i}>
