@@ -37,10 +37,10 @@ export default function StudentResultPage() {
             </div>
 
             <div className="marks-summary">
-              <p><FaMedal /> Total: <b>{r.totalObtained}</b></p>
-              <p>Out of: <b>{r.totalMax}</b></p>
-              <p>%: <b>{r.percentage}</b></p>
-              <p>Grade: <span className="grade">{r.grade}</span></p>
+              <p><FaMedal /> Total  :  <b>{r.totalObtained}</b></p>
+              <p>Out of  :  <b>{r.totalMax}</b></p>
+              <p>percentage  :  <b>{r.percentage}</b></p>
+              <p>Grade  :  <span className="grade">{r.grade}</span></p>
             </div>
 
             <table className="marks-table">
