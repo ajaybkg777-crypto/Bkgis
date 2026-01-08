@@ -5,7 +5,7 @@
   font-family: "Poppins", sans-serif;
   background: #f3f6ff;
   min-height: 100vh;
-  padding: 40px 8%;
+  padding: 40px 8% !important;
 }
 
 /* ---------------------------------------------------
@@ -36,7 +36,7 @@
    STUDENT NAME
 --------------------------------------------------- */
 .student-name {
-  font-size: 2.4rem;
+  font-size: 2.4rem !important;
   font-weight: 700;
   color: #0f2b63;
   text-align: center;
@@ -86,11 +86,9 @@
 }
 
 /* Mobile Responsive */
-@media (max-width: 700px) {
+@media (max-width: 10000px) {
   .info-box {
-    flex-direction: column;
-    padding: 20px;
-    gap: 15px;
+    flex-direction: row !important;
   }
 
   .info-item span {
@@ -155,7 +153,7 @@
 .marks-table td {
   padding: 12px;
   border-bottom: 1px solid #e5e7eb;
-  font-size: 1rem;
+  font-size: 1rem !important;
   color: #333;
 }
 
