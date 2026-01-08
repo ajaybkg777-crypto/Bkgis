@@ -1,148 +1,16 @@
-/* ===================================================
-   BASE (ALL DEVICES)
-=================================================== */
-.result-page {
-  font-family: "Poppins", sans-serif;
-  background: #f3f6ff;
-  min-height: 100vh;
-  padding: 30px 16px;
-}
-
-.result-header {
-  text-align: center;
-  font-size: 2.3rem;
-  margin-bottom: 22px;
-  color: #0f2b63;
-}
-
-/* ===================================================
-   RESULT CARD
-=================================================== */
-.result-card {
-  background: #ffffff;
-  padding: 22px;
-  border-radius: 14px;
-  max-width: 900px;
-  margin: auto;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  border-top: 4px solid #ffda79;
-}
-
-/* ===================================================
-   STUDENT NAME
-=================================================== */
-.student-name {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: #0f2b63;
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-/* ===================================================
-   INFO BOX
-=================================================== */
-.info-box {
-  margin: 22px auto;
-  padding: 18px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  border-top: 4px solid #ffda79;
-  display: flex;
-  gap: 18px;
-}
-
-.info-item {
-  flex: 1;
-  text-align: center;
-}
-
-.info-item label {
-  display: block;
-  font-size: 0.95rem;
-  color: #2b5893;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.info-item span {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0f2b63;
-  border-bottom: 3px solid #ffda79;
-  padding-bottom: 2px;
-  display: inline-block;
-  min-width: 90px;
-}
-
-/* ===================================================
-   SUMMARY
-=================================================== */
-.marks-summary {
-  background: #edf3ff;
-  padding: 14px;
-  margin-top: 18px;
-  border-radius: 12px;
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  border-left: 5px solid #ffda79;
-}
-
-.marks-summary p {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #0f2b63;
-  margin: 0;
-}
-
-.grade {
-  background: #ffe8c2;
-  padding: 4px 10px;
-  border-radius: 6px;
-  color: #5a2800;
-  font-weight: 700;
-}
-
-/* ===================================================
-   MARKS TABLE
-=================================================== */
-.marks-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 22px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.marks-table th {
-  background: linear-gradient(360deg, #4b79a7, #0f2b63);
-  color: #ffffff;
-  padding: 12px;
-  font-size: 0.95rem;
-}
-
-.marks-table td {
-  padding: 11px;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-.marks-table tr:nth-child(even) {
-  background: #f8f9ff;
-}
-
-/* ===================================================
-   DESKTOP / LAPTOP (>=1024px)
-=================================================== */
 @media (min-width: 1024px) {
 
   .result-page {
     padding: 40px 8%;
+  }
+
+  .result-header {
+    font-size: 2.4rem;
+  }
+
+  .result-card {
+    max-width: 900px;
+    padding: 28px;
   }
 
   .student-name {
@@ -151,6 +19,7 @@
 
   .info-box {
     flex-direction: row;
+    justify-content: space-between;
     padding: 22px 35px;
   }
 
@@ -160,40 +29,10 @@
 
   .marks-summary {
     flex-direction: row;
-  }
-}
-
-/* ===================================================
-   MOBILE (<=767px)
-=================================================== */
-@media (max-width: 767px) {
-
-  .result-page {
-    padding: 18px 10px;
+    justify-content: space-between;
   }
 
-  .result-header {
-    font-size: 1.8rem;
-  }
-
-  .student-name {
-    font-size: 1.5rem;
-  }
-
-  .info-box {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .marks-summary {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  /* TABLE SCROLL ONLY ON MOBILE */
   .marks-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: table;
   }
 }
