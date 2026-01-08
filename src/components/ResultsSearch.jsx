@@ -51,7 +51,7 @@ export default function ResultsSearch() {
         return;
       }
 
-      navigate("/public/result", { state: { result: res.data[0] } });
+      navigate("/result", { state: { result: res.data[0] } });
     } catch (err) {
       console.error(err);
       alert("Something went wrong! Try again.");
