@@ -87,6 +87,11 @@
 
 /* Desktop + Tablet */
 @media (min-width: 768px) {
+      .result-desktop-wrapper {
+  width: 600px;
+  height:400px;
+  margin: 0 auto;
+}
   .info-box {
     flex-direction: row;
   }
@@ -94,6 +99,11 @@
 
 /* Mobile (currently disabled) */
 @media (max-width: 767px) {
+   .result-desktop-wrapper {
+  width: 600px;
+  height:400px;
+  margin: 0 auto;
+}
   .info-box {
     flex-direction: row; /* still desktop */
   }
