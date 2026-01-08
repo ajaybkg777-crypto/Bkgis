@@ -85,17 +85,20 @@
   min-width: 120px;
 }
 
-/* Mobile Responsive */
-@media (max-width: 10000px) {
+/* Desktop + Tablet */
+@media (min-width: 768px) {
   .info-box {
-    flex-direction: row !important;
-  }
-
-  .info-item span {
-    font-size: 1.3rem;
-    min-width: auto;
+    flex-direction: row;
   }
 }
+
+/* Mobile (currently disabled) */
+@media (max-width: 767px) {
+  .info-box {
+    flex-direction: row; /* still desktop */
+  }
+}
+
 
 /* MOBILE PAR SIRF RESULT SCROLL KARE */
 .result-scroll {
@@ -104,7 +107,7 @@
 
 /* RESULT KO DESKTOP WIDTH DO */
 .result-desktop-wrapper {
-  width: 700px;
+  width: 1200px;
   margin: 0 auto;
 }
 
