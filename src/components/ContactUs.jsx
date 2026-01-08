@@ -4,13 +4,12 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import api from "../api";
 
 export default function ContactUs() {
-
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
     subject: "",
-    message: ""
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -28,9 +27,7 @@ export default function ContactUs() {
 
     try {
       setLoading(true);
-
-    await api.post("/public/contact/submit", form);
-
+      await api.post("/public/contact/submit", form);
 
       alert("✅ Message sent successfully!");
       setForm({
@@ -38,9 +35,8 @@ export default function ContactUs() {
         email: "",
         phone: "",
         subject: "",
-        message: ""
+        message: "",
       });
-
     } catch (err) {
       alert("❌ Failed to send message. Try again.");
     } finally {
@@ -100,9 +96,8 @@ export default function ContactUs() {
         </div>
       </section>
 
-      {/* ✉️ Form + Map */}
+      {/* ✉️ Form */}
       <section className="contact-body-pro">
-
         <div className="form-box-pro">
           <h2>Get In Touch</h2>
           <p>Feel free to drop us a message. We’ll reach back shortly!</p>
@@ -114,6 +109,7 @@ export default function ContactUs() {
               placeholder="Full Name"
               value={form.name}
               onChange={handleChange}
+              autoComplete="name"
               required
             />
 
@@ -123,6 +119,7 @@ export default function ContactUs() {
               placeholder="Email Address"
               value={form.email}
               onChange={handleChange}
+              autoComplete="email"
               required
             />
 
@@ -132,6 +129,7 @@ export default function ContactUs() {
               placeholder="Phone Number"
               value={form.phone}
               onChange={handleChange}
+              autoComplete="tel"
               required
             />
 
@@ -141,6 +139,7 @@ export default function ContactUs() {
               placeholder="Subject"
               value={form.subject}
               onChange={handleChange}
+              autoComplete="off"
               required
             />
 
@@ -150,6 +149,7 @@ export default function ContactUs() {
               rows="5"
               value={form.message}
               onChange={handleChange}
+              autoComplete="off"
               required
             ></textarea>
 
@@ -168,7 +168,6 @@ export default function ContactUs() {
             allowFullScreen
           ></iframe>
         </div>
-
       </section>
     </div>
   );
