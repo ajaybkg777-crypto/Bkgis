@@ -97,6 +97,16 @@
   }
 }
 
+/* MOBILE PAR SIRF RESULT SCROLL KARE */
+.result-scroll {
+  overflow-x: auto;
+}
+
+/* RESULT KO DESKTOP WIDTH DO */
+.result-desktop-wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
 
 
 
