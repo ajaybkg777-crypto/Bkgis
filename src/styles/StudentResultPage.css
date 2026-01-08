@@ -111,22 +111,46 @@
   display: flex;
   justify-content: space-between;
   border-left: 5px solid #ffda79;
+  gap: 12px;
 }
 
+/* TEXT */
 .marks-summary p {
   font-weight: 600;
   font-size: 1.1rem;
   color: #0f2b63;
-   text-align: center; 
+  text-align: center;
+  margin: 0;
 }
 
+/* GRADE BADGE */
 .grade {
   background: #ffe8c2;
   padding: 4px 10px;
   border-radius: 6px;
   color: #5a2800;
   font-weight: 700;
+  white-space: nowrap;
 }
+
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
+  .marks-summary {
+    flex-wrap: wrap;            /* ⭐ next line me aa jaaye */
+    justify-content: center;    /* center align */
+    text-align: center;
+  }
+
+  .marks-summary p {
+    width: 48%;                 /* 2 items per row */
+    font-size: 0.95rem;         /* thoda chhota */
+  }
+
+  .marks-summary p:last-child {
+    width: 100%;                /* Grade full row */
+  }
+}
+
 
 /* ---------------------------------------------------
    MARKS TABLE
