@@ -6,7 +6,16 @@ import "../styles/StudentResultPage.css";
 export default function StudentResultPage() {
   const { state } = useLocation();
   const r = state?.result;
+ useEffect(() => {
+    const meta = document.createElement("meta");
+    meta.name = "viewport";
+    meta.content = "width=1200";
+    document.head.appendChild(meta);
 
+    return () => {
+      document.head.removeChild(meta); // cleanup
+    };
+  }, []);
   if (!r) return <h2 className="not-found">No result data available.</h2>;
 
   return (
