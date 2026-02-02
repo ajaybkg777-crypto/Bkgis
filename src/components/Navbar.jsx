@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="middle-bar">
         <img src="/assets/logo.png" alt="School Logo" className="school-logo" />
         <div className="school-title">
-          <h1>BKG INTERNATIONAL SCHOOL</h1>
+          <h1>BKG INTERNATIONAL SCHOOL - Best CBSE School in khargone</h1>
           <p className="affiliation">AFFILIATION NO.: 1031363</p>
         </div>
       </div>
