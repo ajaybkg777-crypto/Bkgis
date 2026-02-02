@@ -102,7 +102,7 @@ export default function AboutUs() {
               img: "/assets/principal_mam.jpg",
               name: "Mrs. Pallavi Dawande",
               title: "Principal, BKG International School",
-             message: """
+             message: `
 Dear Parents and Well-Wishers,
 
 Warm greetings from all of us at BKG International School – the Best CBSE School in Khargone.
@@ -117,7 +117,7 @@ Together with parents and teachers, we shape confident, responsible, and capable
 
 Principal  
 Pallavi Dawande
-"""
+`
 
             },
           ].map((person, i) => (
@@ -129,7 +129,7 @@ Pallavi Dawande
                 <div className="message-right">
                   <h2>{person.name}</h2>
                   <h4>{person.title}</h4>
-                  <p>{person.message}</p>
+                  <pre>{person.message}</pre>
                   <a href={`/messages/${i}`} className="btn read-more">
                     Read More
                   </a>
