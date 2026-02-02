@@ -621,17 +621,18 @@ h1, h2, h3, h4 {
 /* ================= FAQ SECTION ================= */
 .faq-section {
   padding: 80px 10%;
-  background: linear-gradient(135deg, #0f2b63, #2b5893);
-  color: #fff;
+  background: #ffffff; /* WHITE BACKGROUND */
+  color: #0f2b63;
 }
 
 .faq-section .section-title {
   text-align: center;
   margin-bottom: 40px;
+  color: #0f2b63;
 }
 
 .faq-section .section-title span {
-  color: #ffda79;
+  color: #2b5893;
 }
 
 .faq-container {
@@ -640,16 +641,18 @@ h1, h2, h3, h4 {
 }
 
 .faq-item {
-  background: rgba(255, 255, 255, 0.08);
+  background: #f8faff;
   border-radius: 14px;
   margin-bottom: 16px;
-  padding: 16px 20px;
+  padding: 18px 22px;
   cursor: pointer;
+  border: 1px solid rgba(15, 43, 99, 0.1);
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: #eef3ff;
+  transform: translateY(-2px);
 }
 
 .faq-item summary {
@@ -657,6 +660,7 @@ h1, h2, h3, h4 {
   font-weight: 600;
   list-style: none;
   position: relative;
+  color: #0f2b63;
 }
 
 .faq-item summary::after {
@@ -664,7 +668,7 @@ h1, h2, h3, h4 {
   position: absolute;
   right: 0;
   font-size: 22px;
-  color: #ffda79;
+  color: #2b5893;
 }
 
 .faq-item[open] summary::after {
@@ -674,6 +678,6 @@ h1, h2, h3, h4 {
 .faq-item p {
   margin-top: 12px;
   line-height: 1.7;
-  color: #f1f1f1;
+  color: #333333;
   font-size: 15px;
 }
