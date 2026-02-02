@@ -96,7 +96,7 @@ export default function AboutUs() {
               name: "Mr. Hariom Gupta",
               title: "Director, BKG International School",
               message:
-                "“बीकेजी क्लासेस” खरगोन शहर में शिक्षा के क्षेत्र का एक विश्वसनीय नाम है। अब हम “बीकेजी इंटरनेशनल स्कूल” के रूप में विद्यार्थियों को एक नई दिशा देने जा रहे हैं। हमारा उद्देश्य निमाड़ क्षेत्र के बच्चों को बड़े शहरों जैसी आधुनिक, सर्वसुविधायुक्त एवं तकनीकी शिक्षा उनके ही शहर में उपलब्ध कराना है। हमें विश्वास है कि आपकी वही आस्था और सहयोग, बीकेजी इंटरनेशनल स्कूल को भी नई ऊँचाइयों तक ले जाएगा।",
+              “BKG Classes, a trusted and well-known name in education in Khargone, is now proudly transforming into BKG International School, Khargone. With a vision to shape the future of students, our mission is to provide modern, world-class CBSE education with advanced infrastructure, smart classrooms, and technology-driven learning—comparable to top schools in metropolitan cities—right here in the Nimar region. We are confident that your continued trust and support will help BKG International School, the best CBSE school in Khargone, scale new heights of excellence in education.”
             },
             {
               img: "/assets/principal_mam.jpg",
