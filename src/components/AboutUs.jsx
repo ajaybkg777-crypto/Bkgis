@@ -115,6 +115,8 @@ As Nelson Mandela said, “Education is the most powerful weapon you can use to 
 
 Together with parents and teachers, we shape confident, responsible, and capable learners.
 
+
+
 Principal  
 Pallavi Dawande
 `
