@@ -95,9 +95,14 @@ export default function AboutUs() {
               img: "/assets/director_sir.jpg",
               name: "Mr. Hariom Gupta",
               title: "Director, BKG International School",
-              message:
-              “BKG Classes, a trusted and well-known name in education in Khargone, is now proudly transforming into BKG International School, Khargone. With a vision to shape the future of students, our mission is to provide modern, world-class CBSE education with advanced infrastructure, smart classrooms, and technology-driven learning—comparable to top schools in metropolitan cities—right here in the Nimar region. We are confident that your continued trust and support will help BKG International School, the best CBSE school in Khargone, scale new heights of excellence in education.”
-            },
+             message: `
+BKG Classes, a trusted and well-known name in education in Khargone, is now proudly transforming into BKG International School, Khargone.
+
+With a vision to shape the future of students, our mission is to provide modern, world-class CBSE education with advanced infrastructure, smart classrooms, and technology-driven learning—comparable to top schools in metropolitan cities—right here in the Nimar region.
+
+We are confident that your continued trust and support will help BKG International School, the best CBSE school in Khargone, scale new heights of excellence in education.
+`
+ },
             {
               img: "/assets/principal_mam.jpg",
               name: "Mrs. Pallavi Dawande",
@@ -131,7 +136,10 @@ Pallavi Dawande
                 <div className="message-right">
                   <h2>{person.name}</h2>
                   <h4>{person.title}</h4>
-                  <p>{person.message}</p>
+                 <p style={{ whiteSpace: "pre-line" }}>
+  {person.message}
+</p>
+
                   <a href={`/messages/${i}`} className="btn read-more">
                     Read More
                   </a>
