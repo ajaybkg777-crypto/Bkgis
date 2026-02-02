@@ -681,4 +681,17 @@ h1, h2, h3, h4 {
   color: #333333;
   font-size: 15px;
 }
+.contact-body-pro {
+  position: relative;
+  background: 
+    linear-gradient(rgba(15, 43, 99, 0.75), rgba(15, 43, 99, 0.75)),
+    url("/assets/campus.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 5%;
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
 
