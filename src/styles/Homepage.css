@@ -685,7 +685,7 @@ h1, h2, h3, h4 {
   position: relative;
   background: 
     linear-gradient(rgba(15, 43, 99, 0.75), rgba(15, 43, 99, 0.75)),
-   url("/public/assets/campus.png");
+   url("/public/assets/campus.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
