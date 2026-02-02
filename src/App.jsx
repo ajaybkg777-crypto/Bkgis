@@ -5,6 +5,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -53,6 +54,7 @@ function PublicLayout({ children }) {
 /* ============ APP ============ */
 export default function App() {
   return (
+    <HelmetProvider>
     <Router>
       <Suspense fallback={<div style={{ textAlign: "center" }}>Loading...</div>}>
         <Routes>
@@ -98,5 +100,6 @@ export default function App() {
         </Routes>
       </Suspense>
     </Router>
+      </HelmetProvider>
   );
 }
