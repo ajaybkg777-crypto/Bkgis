@@ -96,7 +96,7 @@ export default function Homepage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1>BKG International School</h1>
+            <h1>BKG International School-Best CBSE School in khargone</h1>
             <p>Dedicated to Excellence. Shaping the Future.</p>
 
             <div className="hero-buttons">
