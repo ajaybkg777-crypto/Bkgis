@@ -7,7 +7,7 @@ import { Send } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/ContactUs.css";
-
+import { Helmet } from "react-helmet-async";
 export default function Homepage() {
   const [announcements, setAnnouncements] = useState([]);
   const [gallery, setGallery] = useState([]);
@@ -76,6 +76,14 @@ export default function Homepage() {
   }, []);
 
   return (
+     <>
+    <Helmet>
+      <title>BKG International School | Best CBSE School in Khargone</title>
+      <meta
+        name="description"
+        content="BKG International School is one of the best CBSE English medium schools in Khargone offering quality education and holistic development."
+      />
+    </Helmet>
     <div className="homepage">
 
       {/* ================= HERO ================= */}
@@ -231,5 +239,6 @@ export default function Homepage() {
       </section>
 
     </div>
+       </>
   );
 }
