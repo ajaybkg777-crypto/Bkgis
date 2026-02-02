@@ -92,13 +92,22 @@ export default function AboutUs() {
         >
           {[
             {
-              img: "/assets/director_sir.jpg",
+              img: "/assets/founder.jpg",
               name: "Mr. Hariom Gupta",
-              title: "Director, BKG International School",
+              title: "Founder, BKG International School",
              message: `
 BKG Classes, a trusted and well-known name in education in Khargone, is now proudly transforming into BKG International School, Khargone.
 With a vision to shape the future of students, our mission is to provide modern, world-class CBSE education with advanced infrastructure, smart classrooms, and technology-driven learning—comparable to top schools in metropolitan cities—right here in the Nimar region.
 We are confident that your continued trust and support will help BKG International School, the best CBSE school in Khargone, scale new heights of excellence in education.
+`
+ 
+             {[
+            {
+              img: "/assets/director.jpg",
+              name: "Mrs. Parnita Gupta",
+              title: "Director, BKG International School",
+             message: `
+BKG International School is a top-rated school in Khargone, committed to providing high-quality education. Our motto is to deliver education in a way that nurtures learning without creating unnecessary pressure on students. BKG is proudly recognized as one of the best educational groups in Khargone. We consistently strive to offer excellent academic standards along with the holistic development of every student—focusing on intellectual, physical, emotional, and moral growth. We remain dedicated to delivering the best in education, and we sincerely thank parents and well-wishers for their trust and support in making BKG International School the leading CBSE school in Khargone.
 `
  },
             {
