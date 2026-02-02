@@ -102,29 +102,23 @@ export default function AboutUs() {
               img: "/assets/principal_mam.jpg",
               name: "Mrs. Pallavi Dawande",
               title: "Principal, BKG International School",
-              message:
-               Dear Parents and Well-Wishers,
+             message: `
+Dear Parents and Well-Wishers,
 
 Warm greetings from all of us at BKG International School – the Best CBSE School in Khargone.
 
-As we begin a new academic session, I extend a heartfelt welcome to all our students, staff, and parents. Each new year at BKG International School marks another milestone — a dream achieved and a new goal set. Every member of our school community works with dedication and sincerity to turn aspirations into accomplishments.
+As we begin a new academic session, I extend a heartfelt welcome to all our students, staff, and parents. Each new year at BKG International School marks another milestone — a dream achieved and a new goal set.
 
-At BKG International School, we continuously strive to maintain the highest standards of academics while nurturing a warm, inspiring environment for holistic growth. We aim to instill core values like Respect, Integrity, Compassion, and Excellence so our students are prepared for the global future. Our experienced and caring teachers serve as strong role models, keeping the ethos of our school shining bright.
+At BKG International School, we strive for academic excellence while nurturing values like Respect, Integrity, Compassion, and Excellence.
 
-As Nelson Mandela said, “Education is the most powerful weapon you can use to change the world.” BKG International School stands as that pillar of education in Khargone — nurturing intellect, character, and leadership. Together with our dedicated teachers, motivated students, and supportive parents, we shape a generation ready to face challenges with confidence.
+As Nelson Mandela said, “Education is the most powerful weapon you can use to change the world.”
 
-Our caring and qualified teachers act as mentors and role models, helping each student grow in knowledge and character. We also encourage 21st-century skills like teamwork, communication, creativity, and critical thinking.
+Together with parents and teachers, we shape confident, responsible, and capable learners.
 
-A school’s foundation stands firmly on four essential pillars — sound academics, self-discipline, excellence in sports, and moral and spiritual growth. As the head of the institution, my constant effort is to strengthen these pillars of BKG International School, and for this, I seek the unwavering support of all parents who have entrusted their children to our care.
-
-To the parents, my humble advice is this — respect and encourage your children, for it nurtures their self-confidence and pride. Let us value their unique talents, whether in academics, sports, or the arts. At the same time, let us not expect too much, too soon. Allow them to grow naturally, without the weight of unrealistic expectations.
-
-Remember — “Give us a sapling, and we’ll give you a mighty tree bearing sweet fruits.”
-
-Let’s continue our journey together at BKG International School — the Top CBSE School in Khargone — ensuring that every child learns, grows, and succeeds with pride.
-
-Principal
+Principal  
 Pallavi Dawande
+`
+
             },
           ].map((person, i) => (
             <SwiperSlide key={i}>
