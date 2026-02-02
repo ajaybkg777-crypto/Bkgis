@@ -157,26 +157,72 @@ export default function Homepage() {
       </section>
 
       {/* ================= CONTACT + MAP ================= */}
-      <section className="contact-body-pro" id="contact-home">
+      <section className="contact-body-pro">
         <div className="form-box-pro">
           <h2>Get In Touch</h2>
-          <p>We’re happy to guide you. Send us a message!</p>
+          <p>Feel free to drop us a message. We’ll reach back shortly!</p>
 
           <form className="contact-form-pro" onSubmit={handleSubmit}>
-            <input name="name" placeholder="Full Name" onChange={handleChange} required />
-            <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-            <input name="phone" placeholder="Phone" onChange={handleChange} required />
-            <input name="subject" placeholder="Subject" onChange={handleChange} required />
-            <textarea name="message" placeholder="Message" rows="4" onChange={handleChange} required />
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              autoComplete="name"
+              required
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+              autoComplete="email"
+              required
+            />
+
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={form.phone}
+              onChange={handleChange}
+              autoComplete="tel"
+              required
+            />
+
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              value={form.subject}
+              onChange={handleChange}
+              autoComplete="off"
+              required
+            />
+
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="5"
+              value={form.message}
+              onChange={handleChange}
+              autoComplete="off"
+              required
+            ></textarea>
+
             <button type="submit" disabled={loading}>
-              <Send size={18} /> {loading ? "Sending..." : "Send Message"}
+              <Send className="send-icon" />
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>
 
         <div className="map-box-pro">
           <iframe
-            title="BKG School Map"
+            title="BKG International School Map"
             src="https://www.google.com/maps?q=BKG+International+School,+Khargone,+Madhya+Pradesh&output=embed"
             loading="lazy"
             allowFullScreen
