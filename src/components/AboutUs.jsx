@@ -129,7 +129,7 @@ Pallavi Dawande
                 <div className="message-right">
                   <h2>{person.name}</h2>
                   <h4>{person.title}</h4>
-                  <pre>{person.message}</pre>
+                  <p>{person.message}</p>
                   <a href={`/messages/${i}`} className="btn read-more">
                     Read More
                   </a>
