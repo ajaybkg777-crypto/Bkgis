@@ -10,8 +10,7 @@ import "../styles/ContactUs.css";
 import { Helmet } from "react-helmet-async";
 export default function Homepage() {
   const [announcements, setAnnouncements] = useState([]);
-  const [gallery, setGallery] = useState([]);
-  const [calendar, setCalendar] = useState([]);
+  
 
   /* ================= FAQ DATA ================= */
   const faqs = [
