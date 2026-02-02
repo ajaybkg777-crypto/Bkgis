@@ -12,6 +12,34 @@ export default function Homepage() {
   const [gallery, setGallery] = useState([]);
   const [calendar, setCalendar] = useState([]);
 
+  /* ================= FAQ DATA ================= */
+  const faqs = [
+    {
+      q: "Which board does BKG International School follow?",
+      a: "BKG International School follows the CBSE curriculum with a focus on academic excellence and holistic development."
+    },
+    {
+      q: "Is BKG International School a good CBSE school in Khargone?",
+      a: "Yes, BKG International School is one of the best CBSE English medium schools in Khargone with modern infrastructure and experienced teachers."
+    },
+    {
+      q: "What classes are available?",
+      a: "The school offers education from Pre-Primary to Senior Secondary level."
+    },
+    {
+      q: "Does the school provide transport facilities?",
+      a: "Yes, safe and reliable transport facilities are available for students."
+    },
+    {
+      q: "Does the school focus on sports and activities?",
+      a: "Along with academics, the school focuses on sports, cultural activities, and personality development."
+    },
+    {
+      q: "How can parents apply for admission?",
+      a: "Parents can visit the school campus or contact the admission office for guidance."
+    }
+  ];
+
   /* ================= FETCH DATA ================= */
   useEffect(() => {
     api.get("/public/announcements")
@@ -24,9 +52,9 @@ export default function Homepage() {
 
     api.get("/public/calendar")
       .then(res =>
-        setCalendar(res.data.sort(
-          (a, b) => new Date(a.date) - new Date(b.date)
-        ))
+        setCalendar(
+          res.data.sort((a, b) => new Date(a.date) - new Date(b.date))
+        )
       )
       .catch(() => {});
   }, []);
@@ -34,9 +62,7 @@ export default function Homepage() {
   return (
     <div className="homepage">
 
-      {/* =====================================================
-           🌟 HERO SECTION
-      ====================================================== */}
+      {/* ================= HERO SECTION ================= */}
       <header className="hero-section">
         <div className="video-container">
           <video
@@ -47,7 +73,7 @@ export default function Homepage() {
             muted
             playsInline
           />
-          <div className="video-overlay"></div>
+          <div className="video-overlay" />
 
           <motion.div
             className="hero-text"
@@ -66,9 +92,7 @@ export default function Homepage() {
         </div>
       </header>
 
-      {/* =====================================================
-           🌟 WHY CHOOSE US (SEO OPTIMIZED)
-      ====================================================== */}
+      {/* ================= WHY CHOOSE US ================= */}
       <section className="why-choose-pro" id="why-bkg">
         <motion.h2
           className="section-title"
@@ -85,30 +109,30 @@ export default function Homepage() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          BKG International School is one of the best CBSE English medium schools
-          in Khargone, offering modern infrastructure, experienced teachers,
-          academic excellence, and holistic student development.BKG International School, the top CBSE school in Khargone, offers a comprehensive education that strives for the balanced development of intellectual, mental, physical, emotional, and social abilities. Our sports program provides equal opportunities for growth, imparting valuable life lessons on the field. The school fosters inquiry-based learning through well-equipped laboratories, emphasizing metacognition, critical thinking, technology integration, and project-based learning. BKG International School is committed to personalized learning, tailoring education to each student’s strengths, needs, skills, and interests, and offering multiple pathways for a customized and effective learning experience in Khargone.
+          BKG International School is a leading CBSE English medium school in Khargone,
+          offering modern infrastructure, inquiry-based learning, experienced faculty,
+          strong sports programs, and personalized education for every child.
         </motion.p>
 
         <Swiper
           modules={[Autoplay, Pagination]}
           spaceBetween={20}
           loop
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 3000 }}
           pagination={{ clickable: true }}
           breakpoints={{
             1024: { slidesPerView: 3 },
             768: { slidesPerView: 2 },
-            0: { slidesPerView: 1 },
+            0: { slidesPerView: 1 }
           }}
           className="why-swiper-card"
         >
           {[
-            { img: "/assets/quality.png", alt: "Best CBSE education in Khargone" },
+            { img: "/assets/quality.png", alt: "Best CBSE school in Khargone" },
             { img: "/assets/fun.png", alt: "Interactive learning environment" },
-            { img: "/assets/modern.png", alt: "Modern classrooms and labs" },
-            { img: "/assets/topper.png", alt: "Academic excellence and results" },
-            { img: "/assets/expert.png", alt: "Experienced faculty in Khargone" },
+            { img: "/assets/modern.png", alt: "Modern classrooms" },
+            { img: "/assets/topper.png", alt: "Academic excellence" },
+            { img: "/assets/expert.png", alt: "Experienced faculty" }
           ].map((item, i) => (
             <SwiperSlide key={i}>
               <motion.div
@@ -124,11 +148,7 @@ export default function Homepage() {
         </Swiper>
       </section>
 
-
-
-      {/* =====================================================
-           🌟 LEADERSHIP
-      ====================================================== */}
+      {/* ================= LEADERSHIP ================= */}
       <section className="message-slider" id="leadership">
         <Swiper
           modules={[Autoplay, Pagination]}
@@ -142,16 +162,14 @@ export default function Homepage() {
               img: "/assets/director_sir.jpg",
               name: "Mr. Hariom Gupta",
               title: "Director, BKG International School",
-              message:
-                "बीकेजी इंटरनेशनल स्कूल का उद्देश्य निमाड़ के बच्चों को आधुनिक शिक्षा देना है।",
+              message: "बीकेजी इंटरनेशनल स्कूल का उद्देश्य निमाड़ के बच्चों को आधुनिक शिक्षा देना है।"
             },
             {
               img: "/assets/principal_mam.jpg",
               name: "Mrs. Pallavi Dawande",
               title: "Principal, BKG International School",
-              message:
-                "हम विद्यार्थियों के सर्वांगीण विकास और नैतिक मूल्यों पर विशेष ध्यान देते हैं।",
-            },
+              message: "हम विद्यार्थियों के सर्वांगीण विकास और नैतिक मूल्यों पर विशेष ध्यान देते हैं।"
+            }
           ].map((p, i) => (
             <SwiperSlide key={i}>
               <div className="message-slide">
@@ -167,6 +185,33 @@ export default function Homepage() {
             </SwiperSlide>
           ))}
         </Swiper>
+      </section>
+
+      {/* ================= FAQ SECTION ================= */}
+      <section className="faq-section" id="faq">
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Frequently Asked Questions – <span>BKG International School</span>
+        </motion.h2>
+
+        <div className="faq-container">
+          {faqs.map((item, index) => (
+            <motion.details
+              key={index}
+              className="faq-item"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </motion.details>
+          ))}
+        </div>
       </section>
 
     </div>
