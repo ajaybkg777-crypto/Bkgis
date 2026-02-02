@@ -111,7 +111,7 @@ export default function Homepage() {
         >
           BKG International School is a leading CBSE English medium school in Khargone,
           offering modern infrastructure, inquiry-based learning, experienced faculty,
-          strong sports programs, and personalized education for every child.
+          strong sports programs, and personalized education for every child.BKG International School, the top CBSE school in Khargone, offers a comprehensive education that strives for the balanced development of intellectual, mental, physical, emotional, and social abilities. Our sports program provides equal opportunities for growth, imparting valuable life lessons on the field. The school fosters inquiry-based learning through well-equipped laboratories, emphasizing metacognition, critical thinking, technology integration, and project-based learning. BKG International School is committed to personalized learning, tailoring education to each student’s strengths, needs, skills, and interests, and offering multiple pathways for a customized and effective learning experience in Khargone.
         </motion.p>
 
         <Swiper
