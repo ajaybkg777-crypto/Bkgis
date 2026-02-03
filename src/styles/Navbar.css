@@ -57,11 +57,13 @@
 .school-logo {
   width: 64px;
   height: 64px;
- 
+  border-radius: 50%;        /* 🔵 Circular logo */
   border: 3px solid #fff;
-  object-fit: cover;
+  object-fit: cover;         /* Image ko properly fit karega */
+  object-position: center;   /* Center me rahegi */
   transition: transform 0.3s ease;
 }
+
 
 .school-logo:hover {
   transform: scale(1.06);
