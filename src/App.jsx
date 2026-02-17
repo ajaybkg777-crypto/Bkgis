@@ -44,7 +44,7 @@ function PublicLayout({ children }) {
   return (
     <div className="main-container">
       <Navbar />
-      <CounselingPopup />
+      
       <main style={{ minHeight: "70vh" }}>{children}</main>
       <Footer />
     </div>
