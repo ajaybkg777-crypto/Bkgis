@@ -28,7 +28,7 @@ export default function Homepage() {
 {
   q: "Is BKG International School among the top 10 CBSE schools in Khargone?",
   a: "Yes, the school is counted among the top 10 CBSE schools in Khargone for quality education and holistic development."
-}
+},
 
     {
       q: "Is transport facility available?",
