@@ -19,14 +19,17 @@ export default function AboutUs() {
 </h2>
 
 
-          <p>
-            <b>BKG International School</b> is a beacon of modern learning and holistic growth.
-            We blend <span className="highlight">academic excellence</span> with 
-            <span className="highlight"> value-based education</span> to shape students 
-            for success in <b>competitive exams</b> and in life.  
-            With world-class teaching, digital classrooms, and caring mentors, 
-            we prepare our students to shine confidently in every field.
-          </p>
+         <p>
+  <b>BKG International School, Khargone</b> is one of the 
+  <strong> best CBSE and English medium schools in Khargone, Madhya Pradesh</strong>. 
+  We are committed to delivering high-quality CBSE education with a focus on 
+  academic excellence, discipline, and holistic development.
+  <br /><br />
+  Recognized as a <strong>top CBSE school in MP</strong>, BKG International School 
+  prepares students for competitive exams and real-world challenges through 
+  smart classrooms, experienced teachers, and value-based education.
+</p>
+
         </div>
       </section>
       
@@ -48,6 +51,9 @@ export default function AboutUs() {
       experienced teachers, modern learning infrastructure, and value-based education, 
       establishing BKG International School among the 
       <b> top schools in Khargone</b> and a trusted choice for parents seeking quality education.
+       making BKG International School a preferred choice for parents searching for
+  the <strong>best CBSE school near me</strong> and a trusted 
+  <strong>English medium school in Khargone</strong>.
     </p>
   </div>
 </section>
@@ -69,6 +75,9 @@ export default function AboutUs() {
       <b> top 10 schools in Khargone</b>, shaping future leaders who are confident, 
       compassionate, technologically aware, and socially responsible — ready to excel 
       in higher education and contribute positively to society.
+      with the aim of being recognized as the 
+  <strong> No.1 CBSE school in Khargone</strong> and among the 
+  <strong> top CBSE schools in India</strong>.
     </p>
   </div>
 </section>
