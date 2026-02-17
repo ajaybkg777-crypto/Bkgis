@@ -17,14 +17,19 @@ export default function Homepage() {
       q: "Which board does BKG International School follow?",
       a: "BKG International School follows the CBSE curriculum with a strong focus on academic excellence and holistic development."
     },
-    {
-      q: "Is BKG International School one of the best CBSE schools in Khargone?",
-      a: "Yes, the school is among the top CBSE English medium schools in Khargone with modern facilities and experienced faculty."
-    },
-    {
-      q: "What classes are offered?",
-      a: "Classes are available from Pre-Primary to Senior Secondary level."
-    },
+   {
+  q: "Is BKG International School the best CBSE school in Khargone?",
+  a: "Yes, BKG International School is widely recognized as one of the best CBSE and English medium schools in Khargone, Madhya Pradesh."
+},
+{
+  q: "Why parents consider BKG International School a top CBSE school near me?",
+  a: "Due to experienced faculty, modern infrastructure, strong academics, sports facilities, and a safe learning environment."
+},
+{
+  q: "Is BKG International School among the top 10 CBSE schools in Khargone?",
+  a: "Yes, the school is counted among the top 10 CBSE schools in Khargone for quality education and holistic development."
+}
+
     {
       q: "Is transport facility available?",
       a: "Yes, safe and reliable transport facilities are provided for students."
@@ -96,8 +101,15 @@ export default function Homepage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1>BKG International School-Best CBSE School in khargone</h1>
-            <p>Dedicated to Excellence. Shaping the Future.</p>
+           <h1>
+  BKG International School – Best CBSE & English Medium School in Khargone, MP
+</h1>
+
+          <p>
+  Top CBSE affiliated English medium school in Khargone offering quality
+  education, modern infrastructure, and holistic student development.
+</p>
+
 
             <div className="hero-buttons">
               <a href="/admissions" className="btn primary">Enroll Now</a>
@@ -113,11 +125,22 @@ export default function Homepage() {
           Why Choose <span>BKG International School?</span>
         </motion.h2>
 
-        <motion.p className="section-subtitle">
-          A trusted CBSE English medium school in Khargone offering modern
-          infrastructure, inquiry-based learning, sports excellence,
-          experienced faculty, and personalized education.BKG International School, the top CBSE school in Khargone, offers a comprehensive education that strives for the balanced development of intellectual, mental, physical, emotional, and social abilities. Our sports program provides equal opportunities for growth, imparting valuable life lessons on the field. The school fosters inquiry-based learning through well-equipped laboratories, emphasizing metacognition, critical thinking, technology integration, and project-based learning. BKG International School is committed to personalized learning, tailoring education to each student’s strengths, needs, skills, and interests, and offering multiple pathways for a customized and effective learning experience in Khargone.
-        </motion.p>
+       <motion.p className="section-subtitle">
+  BKG International School is recognized as one of the 
+  <strong> best CBSE schools in Khargone, Madhya Pradesh</strong>. 
+  We are a <strong>top English medium CBSE school near me</strong> for parents 
+  searching quality education, discipline, and modern learning methods.
+  <br /><br />
+  As a <strong>top CBSE school in MP</strong>, we focus on balanced development of 
+  intellectual, physical, emotional, and social skills. Our school provides 
+  smart classrooms, advanced science and computer laboratories, sports facilities,
+  inquiry-based learning, and personalized education pathways.
+  <br /><br />
+  BKG International School is counted among the 
+  <strong> top 10 CBSE schools in Khargone</strong> and is emerging as a 
+  <strong> best CBSE school in India</strong> for holistic and value-based education.
+</motion.p>
+
 
         <Swiper
           modules={[Autoplay, Pagination]}
