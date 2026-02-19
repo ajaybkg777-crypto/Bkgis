@@ -69,9 +69,7 @@
   gap: 28px;
   justify-items: center;
 }
-.event-grid:has(.event-card:only-child) {
-  grid-template-columns: 1fr;
-}
+
 /* -------- EVENT CARD (3D) -------- */
 
 .event-card {
@@ -174,9 +172,7 @@
   gap: 24px;
   justify-items: center;
 }
-.photo-grid:has(.media-box:only-child) {
-  grid-template-columns: 1fr;
-}
+
 
 /* -------- PHOTO / VIDEO BOX -------- */
 
