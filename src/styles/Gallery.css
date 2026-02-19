@@ -69,8 +69,9 @@
   gap: 28px;
   justify-items: center;
 }
-
-
+.event-grid:has(.event-card:only-child) {
+  grid-template-columns: 1fr;
+}
 /* -------- EVENT CARD (3D) -------- */
 
 .event-card {
@@ -173,7 +174,9 @@
   gap: 24px;
   justify-items: center;
 }
-
+.photo-grid:has(.media-box:only-child) {
+  grid-template-columns: 1fr;
+}
 
 /* -------- PHOTO / VIDEO BOX -------- */
 
@@ -224,20 +227,62 @@
 .play-icon {
   position: absolute;
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 52px;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.45);
-  transition: 0.3s ease;
+
+  font-size: 48px;
+  font-weight: bold;
+
+  color: #ffda79;
+
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.55) 70%
+  );
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  transition: all 0.35s ease;
+}
+
+/* ▶ Play button circle */
+.play-icon::before {
+  content: "";
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #ffda79, #ffb84c);
+
+  box-shadow:
+    0 8px 22px rgba(255, 218, 121, 0.6),
+    0 0 0 10px rgba(255, 218, 121, 0.15);
+
+  transition: all 0.35s ease;
+  z-index: -1;
+}
+
+/* ✨ Hover effect */
+.video-thumb:hover .play-icon {
+  background: rgba(15, 43, 99, 0.55);
+}
+
+.video-thumb:hover .play-icon::before {
+  transform: scale(1.12);
+  box-shadow:
+    0 14px 35px rgba(255, 218, 121, 0.8),
+    0 0 0 14px rgba(255, 218, 121, 0.2);
 }
 
 .video-thumb:hover .play-icon {
-  background: rgba(15, 43, 99, 0.6);
-  color: #ffda79;
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
+
 
 /* ================= FULL IMAGE MODAL ================= */
 
@@ -302,11 +347,27 @@
   .photo-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+    .play-icon {
+    font-size: 40px;
+  }
+
+  .play-icon::before {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 @media (max-width: 500px) {
   .event-grid,
   .photo-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+    .play-icon {
+    font-size: 40px;
+  }
+
+  .play-icon::before {
+    width: 64px;
+    height: 64px;
   }
 }
