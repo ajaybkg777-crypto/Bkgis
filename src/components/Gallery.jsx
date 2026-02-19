@@ -9,14 +9,13 @@ export default function Gallery() {
   const [modalImage, setModalImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  /* ================= FETCH GALLERY ================= */
   useEffect(() => {
     const fetchGallery = async () => {
       try {
         const res = await api.get("/public/gallery");
         setItems(res.data || []);
       } catch (err) {
-        console.error("Gallery fetch error:", err);
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -24,7 +23,6 @@ export default function Gallery() {
     fetchGallery();
   }, []);
 
-  /* ================= FILTER & GROUP ================= */
   const filtered = items.filter((i) => i.category === section);
 
   const grouped = filtered.reduce((acc, item) => {
@@ -33,20 +31,14 @@ export default function Gallery() {
     return acc;
   }, {});
 
-  if (loading) {
-    return <p className="gallery-loading">Loading gallery...</p>;
-  }
+  if (loading) return <p className="loading">Loading gallery...</p>;
 
   return (
     <section className="gallery-simple">
 
-      {/* ================= HEADER ================= */}
+      {/* HEADER */}
       <header className="gallery-header">
-        <h1>
-          {section === "junior"
-            ? "Junior Wing Gallery"
-            : "Senior Wing Gallery"}
-        </h1>
+        <h1>{section === "junior" ? "Junior Wing Gallery" : "Senior Wing Gallery"}</h1>
 
         <div className="gallery-tabs">
           <button
@@ -71,55 +63,39 @@ export default function Gallery() {
         </div>
       </header>
 
-      {/* ================= EVENT GRID ================= */}
+      {/* EVENT GRID */}
       {!selectedEvent && (
         <div className="event-grid">
-          {Object.keys(grouped).length === 0 && (
-            <p className="no-gallery">No gallery available</p>
-          )}
-
           {Object.entries(grouped).map(([event, group]) => (
             <div
               key={event}
               className="event-card"
               onClick={() => setSelectedEvent(event)}
             >
-              <div className="event-thumb">
-                <img
-                  src={group[0].url}
-                  alt={event}
-                  onError={(e) => (e.target.src = "/no-image.png")}
-                />
-              </div>
-
+              <img src={group[0].url} alt={event} />
               <div className="event-info">
                 <h3>{event}</h3>
-                <span>{group.length} Photos / Videos</span>
+                <span>{group.length} Media</span>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* ================= MEDIA GRID ================= */}
+      {/* MEDIA GRID */}
       {selectedEvent && (
         <div className="photo-gallery">
           <h2>{selectedEvent}</h2>
 
           <div className="photo-grid">
             {grouped[selectedEvent].map((item, idx) => (
-              <div key={idx} className="media-card">
-
+              <div key={idx} className="media-box">
                 {item.type === "video" ? (
                   <div
-                    className="video-card"
+                    className="video-thumb"
                     onClick={() => window.open(item.videoLink, "_blank")}
                   >
-                    <img
-                      src={item.url}
-                      alt="Video Thumbnail"
-                      onError={(e) => (e.target.src = "/no-image.png")}
-                    />
+                    <img src={item.url} alt="Video" />
                     <span className="play-icon">▶</span>
                   </div>
                 ) : (
@@ -127,32 +103,28 @@ export default function Gallery() {
                     src={item.url}
                     alt="Gallery"
                     onClick={() => setModalImage(item.url)}
-                    onError={(e) => (e.target.src = "/no-image.png")}
                   />
                 )}
-
               </div>
             ))}
           </div>
 
           <button className="back-btn" onClick={() => setSelectedEvent(null)}>
-            ← Back to Events
+            ← Back
           </button>
         </div>
       )}
 
-      {/* ================= IMAGE MODAL ================= */}
+      {/* FULLSCREEN IMAGE */}
       {modalImage && (
         <div className="modal-full" onClick={() => setModalImage(null)}>
           <img
             src={modalImage}
-            alt="Preview"
+            alt="Full Preview"
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
-          <span className="close-btn" onClick={() => setModalImage(null)}>
-            ×
-          </span>
+          <span className="close-btn">×</span>
         </div>
       )}
     </section>
