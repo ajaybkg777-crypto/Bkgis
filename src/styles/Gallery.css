@@ -219,7 +219,6 @@
 .video-thumb {
   position: relative;
 }
-
 .play-icon {
   position: absolute;
   inset: 0;
@@ -228,55 +227,63 @@
   align-items: center;
   justify-content: center;
 
-  font-size: 48px;
-  font-weight: bold;
+  font-size: 46px;
+  font-weight: 700;
 
-  color: #ffda79;
+  color: #ffd369; /* soft premium gold */
 
   background: radial-gradient(
     circle,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.55) 70%
+    rgba(15, 43, 99, 0.25) 0%,
+    rgba(15, 43, 99, 0.65) 75%
   );
 
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 
   transition: all 0.35s ease;
 }
 
-/* ▶ Play button circle */
+/* ▶ Play Button Circle */
 .play-icon::before {
   content: "";
   position: absolute;
-  width: 82px;
-  height: 82px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
 
-  background: linear-gradient(135deg, #ffda79, #ffb84c);
+  background: linear-gradient(
+    135deg,
+    #ffd369,
+    #f4b942
+  );
 
   box-shadow:
-    0 8px 22px rgba(255, 218, 121, 0.6),
-    0 0 0 10px rgba(255, 218, 121, 0.15);
+    0 10px 28px rgba(244, 185, 66, 0.55),
+    0 0 0 10px rgba(244, 185, 66, 0.18);
 
   transition: all 0.35s ease;
   z-index: -1;
 }
 
-/* ✨ Hover effect */
+/* ✨ Hover Effects */
 .video-thumb:hover .play-icon {
-  background: rgba(15, 43, 99, 0.55);
+  background: radial-gradient(
+    circle,
+    rgba(15, 43, 99, 0.45) 0%,
+    rgba(15, 43, 99, 0.85) 80%
+  );
 }
 
 .video-thumb:hover .play-icon::before {
-  transform: scale(1.12);
+  transform: scale(1.15);
   box-shadow:
-    0 14px 35px rgba(255, 218, 121, 0.8),
-    0 0 0 14px rgba(255, 218, 121, 0.2);
+    0 16px 40px rgba(244, 185, 66, 0.8),
+    0 0 0 14px rgba(244, 185, 66, 0.25);
 }
 
 .video-thumb:hover .play-icon {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 
