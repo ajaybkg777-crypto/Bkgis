@@ -34,7 +34,7 @@ export default function Gallery() {
   }, {});
 
   if (loading) {
-    return <p style={{ textAlign: "center" }}>Loading gallery...</p>;
+    return <p className="gallery-loading">Loading gallery...</p>;
   }
 
   return (
@@ -75,7 +75,7 @@ export default function Gallery() {
       {!selectedEvent && (
         <div className="event-grid">
           {Object.keys(grouped).length === 0 && (
-            <p style={{ textAlign: "center" }}>No gallery available</p>
+            <p className="no-gallery">No gallery available</p>
           )}
 
           {Object.entries(grouped).map(([event, group]) => (
@@ -84,15 +84,17 @@ export default function Gallery() {
               className="event-card"
               onClick={() => setSelectedEvent(event)}
             >
-              <img
-                src={group[0].url}
-                alt={event}
-                onError={(e) => (e.target.src = "/no-image.png")}
-              />
+              <div className="event-thumb">
+                <img
+                  src={group[0].url}
+                  alt={event}
+                  onError={(e) => (e.target.src = "/no-image.png")}
+                />
+              </div>
 
               <div className="event-info">
                 <h3>{event}</h3>
-                <span>{group.length} Media</span>
+                <span>{group.length} Photos / Videos</span>
               </div>
             </div>
           ))}
@@ -106,12 +108,11 @@ export default function Gallery() {
 
           <div className="photo-grid">
             {grouped[selectedEvent].map((item, idx) => (
-              <div key={idx} className="media-box">
+              <div key={idx} className="media-card">
 
-                {/* VIDEO */}
                 {item.type === "video" ? (
                   <div
-                    className="video-thumb"
+                    className="video-card"
                     onClick={() => window.open(item.videoLink, "_blank")}
                   >
                     <img
@@ -122,7 +123,6 @@ export default function Gallery() {
                     <span className="play-icon">▶</span>
                   </div>
                 ) : (
-                  /* PHOTO */
                   <img
                     src={item.url}
                     alt="Gallery"
@@ -135,31 +135,22 @@ export default function Gallery() {
             ))}
           </div>
 
-          <button
-            className="back-btn"
-            onClick={() => setSelectedEvent(null)}
-          >
-            ← Back
+          <button className="back-btn" onClick={() => setSelectedEvent(null)}>
+            ← Back to Events
           </button>
         </div>
       )}
 
       {/* ================= IMAGE MODAL ================= */}
       {modalImage && (
-        <div
-          className="modal-full"
-          onClick={() => setModalImage(null)}
-        >
+        <div className="modal-full" onClick={() => setModalImage(null)}>
           <img
             src={modalImage}
             alt="Preview"
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
-          <span
-            className="close-btn"
-            onClick={() => setModalImage(null)}
-          >
+          <span className="close-btn" onClick={() => setModalImage(null)}>
             ×
           </span>
         </div>
