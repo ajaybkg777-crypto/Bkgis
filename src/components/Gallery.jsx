@@ -21,12 +21,11 @@ export default function Gallery() {
         setLoading(false);
       }
     };
-
     fetchGallery();
   }, []);
 
-  /* ================= GROUP DATA ================= */
-  const filtered = items.filter(i => i.category === section);
+  /* ================= FILTER & GROUP ================= */
+  const filtered = items.filter((i) => i.category === section);
 
   const grouped = filtered.reduce((acc, item) => {
     acc[item.event] = acc[item.event] || [];
@@ -34,14 +33,20 @@ export default function Gallery() {
     return acc;
   }, {});
 
-  if (loading) return <p style={{ textAlign: "center" }}>Loading gallery...</p>;
+  if (loading) {
+    return <p style={{ textAlign: "center" }}>Loading gallery...</p>;
+  }
 
   return (
     <section className="gallery-simple">
 
-      {/* HEADER */}
+      {/* ================= HEADER ================= */}
       <header className="gallery-header">
-        <h1>{section === "junior" ? "Junior Wing Gallery" : "Senior Wing Gallery"}</h1>
+        <h1>
+          {section === "junior"
+            ? "Junior Wing Gallery"
+            : "Senior Wing Gallery"}
+        </h1>
 
         <div className="gallery-tabs">
           <button
@@ -66,11 +71,11 @@ export default function Gallery() {
         </div>
       </header>
 
-      {/* EVENT GRID */}
+      {/* ================= EVENT GRID ================= */}
       {!selectedEvent && (
         <div className="event-grid">
           {Object.keys(grouped).length === 0 && (
-            <p style={{ textAlign: "center" }}>No photos available</p>
+            <p style={{ textAlign: "center" }}>No gallery available</p>
           )}
 
           {Object.entries(grouped).map(([event, group]) => (
@@ -80,56 +85,83 @@ export default function Gallery() {
               onClick={() => setSelectedEvent(event)}
             >
               <img
-                src={group[0].url}   // ✅ FIXED
+                src={group[0].url}
                 alt={event}
                 onError={(e) => (e.target.src = "/no-image.png")}
               />
+
               <div className="event-info">
                 <h3>{event}</h3>
-                <span>{group.length} Photos</span>
+                <span>{group.length} Media</span>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* PHOTO VIEW */}
+      {/* ================= MEDIA GRID ================= */}
       {selectedEvent && (
         <div className="photo-gallery">
           <h2>{selectedEvent}</h2>
 
           <div className="photo-grid">
-            {grouped[selectedEvent].map((photo, idx) => (
-              <div
-                key={idx}
-                className="photo-box"
-                onClick={() => setModalImage(photo.url)}
-              >
-                <img
-                  src={photo.url}
-                  alt=""
-                  onError={(e) => (e.target.src = "/no-image.png")}
-                />
+            {grouped[selectedEvent].map((item, idx) => (
+              <div key={idx} className="media-box">
+
+                {/* VIDEO */}
+                {item.type === "video" ? (
+                  <div
+                    className="video-thumb"
+                    onClick={() => window.open(item.videoLink, "_blank")}
+                  >
+                    <img
+                      src={item.url}
+                      alt="Video Thumbnail"
+                      onError={(e) => (e.target.src = "/no-image.png")}
+                    />
+                    <span className="play-icon">▶</span>
+                  </div>
+                ) : (
+                  /* PHOTO */
+                  <img
+                    src={item.url}
+                    alt="Gallery"
+                    onClick={() => setModalImage(item.url)}
+                    onError={(e) => (e.target.src = "/no-image.png")}
+                  />
+                )}
+
               </div>
             ))}
           </div>
 
-          <button className="back-btn" onClick={() => setSelectedEvent(null)}>
+          <button
+            className="back-btn"
+            onClick={() => setSelectedEvent(null)}
+          >
             ← Back
           </button>
         </div>
       )}
 
-      {/* FULL IMAGE MODAL */}
+      {/* ================= IMAGE MODAL ================= */}
       {modalImage && (
-        <div className="modal-full" onClick={() => setModalImage(null)}>
+        <div
+          className="modal-full"
+          onClick={() => setModalImage(null)}
+        >
           <img
             src={modalImage}
             alt="Preview"
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
-          <span className="close-btn" onClick={() => setModalImage(null)}>×</span>
+          <span
+            className="close-btn"
+            onClick={() => setModalImage(null)}
+          >
+            ×
+          </span>
         </div>
       )}
     </section>
