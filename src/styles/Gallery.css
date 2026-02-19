@@ -255,11 +255,9 @@
 
 /* 👇 MAIN FIX IS HERE */
 .modal-image {
-  width: auto;
-  height: auto;
+  width: 90%;
+  height: 90%;
 
-  max-width: 100vw;
-  max-height: 100vh;
 
   object-fit: contain;
   border-radius: 0;
