@@ -64,18 +64,18 @@
 /* ================= EVENT GRID ================= */
 
 .event-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row */
   gap: 28px;
-  justify-content: center;
+  justify-items: center;
 }
+
 
 /* -------- EVENT CARD (3D) -------- */
 
 .event-card {
-  flex: 0 1 calc(33.33% - 24px);
-  min-width: 260px;
-  max-width: 330px;
+ width: 100%;
+
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
@@ -168,18 +168,18 @@
 /* ================= MEDIA GRID ================= */
 
 .photo-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row */
   gap: 24px;
-  justify-content: center;
+  justify-items: center;
 }
+
 
 /* -------- PHOTO / VIDEO BOX -------- */
 
 .media-box {
-  flex: 0 1 calc(33.33% - 20px);
-  min-width: 200px;
-  max-width: 260px;
+   width: 100%;
+
   border-radius: 14px;
   overflow: hidden;
   background: #fff;
@@ -298,20 +298,15 @@
 /* ================= RESPONSIVE ================= */
 
 @media (max-width: 900px) {
-  .event-card,
-  .media-box {
-    flex: 0 1 48%;
+  .event-grid,
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
-  .event-card,
-  .media-box {
-    flex: 0 1 100%;
-  }
-
-  .event-card img,
-  .media-box img {
-    height: 140px;
+@media (max-width: 500px) {
+  .event-grid,
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
