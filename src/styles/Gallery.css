@@ -384,4 +384,6 @@
    .event-card {
     transform: none;   /* 3D remove mobile me */
   }
+   .event-info {
+  min-height: 190px;}
 }
