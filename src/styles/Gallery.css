@@ -115,7 +115,7 @@
 /* -------- EVENT INFO -------- */
 
 .event-info {
-  min-height: 130px;   
+  min-height: 140px;   
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -385,5 +385,5 @@
     transform: none;   /* 3D remove mobile me */
   }
    .event-info {
-  min-height: 220px;}
+  min-height: 240px;}
 }
