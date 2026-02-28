@@ -115,7 +115,7 @@
 /* -------- EVENT INFO -------- */
 
 .event-info {
-  min-height: 120px;   /* same height for all */
+  height: 100%;   /* same height for all */
   display: flex;
   flex-direction: column;
   justify-content: center;
