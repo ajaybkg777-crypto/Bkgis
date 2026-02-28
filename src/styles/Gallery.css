@@ -76,7 +76,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
+
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
@@ -115,7 +115,7 @@
 /* -------- EVENT INFO -------- */
 
 .event-info {
-  min-height: 110px;   /* same height for all */
+  min-height: 120px;   /* same height for all */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -380,5 +380,8 @@
   .play-icon::before {
     width: 64px;
     height: 64px;
+  }
+   .event-card {
+    transform: none;   /* 3D remove mobile me */
   }
 }
