@@ -113,7 +113,10 @@
 /* -------- EVENT INFO -------- */
 
 .event-info {
-  width: 100%;
+    min-height: 110px;   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   box-sizing: border-box;
   background: linear-gradient(180deg, #4b79a7, #0f2b63);
   padding: 14px 12px;
