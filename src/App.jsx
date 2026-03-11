@@ -56,6 +56,7 @@ export default function App() {
   return (
     
     <Router>
+      <CounselingPopup />
       <Suspense fallback={<div style={{ textAlign: "center" }}>Loading...</div>}>
         <Routes>
 
