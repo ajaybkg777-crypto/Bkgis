@@ -104,7 +104,6 @@
 
 .disclosure-table th {
   padding: 14px;
-  text-align: center;
   color: #1a1a1a;
   font-size: 0.95rem;
   font-weight: 700;
@@ -119,7 +118,6 @@
 .disclosure-table td {
   padding: 14px;
   font-size: 0.95rem;
-  text-align: center;
   background: #ffffff;
   border-bottom: 1px solid #f0f0f0;
   color: #333;
