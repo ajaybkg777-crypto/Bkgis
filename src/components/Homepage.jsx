@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../api";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,8 +7,9 @@ import { Send } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/ContactUs.css";
+import AnnouncementSection from "./AnnouncementSection";
 export default function Homepage() {
-  const [announcements, setAnnouncements] = useState([]);
+  
   
 
   /* ================= FAQ DATA ================= */
@@ -70,13 +71,6 @@ export default function Homepage() {
       setLoading(false);
     }
   };
-
-  /* ================= FETCH DATA ================= */
-  useEffect(() => {
-    api.get("/public/announcements")
-      .then(res => setAnnouncements(res.data.slice(0, 3)))
-      .catch(() => {});
-  }, []);
 
   return (
      
@@ -161,6 +155,9 @@ export default function Homepage() {
           ))}
         </Swiper>
       </section>
+
+      {/* ================= FAQ ================= */}
+      <AnnouncementSection />
 
       {/* ================= FAQ ================= */}
       <section className="faq-section">

@@ -1,5 +1,4 @@
-// src/components/Navbar.js
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Navbar.css";
 
@@ -10,14 +9,10 @@ export default function Navbar() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // 🌟 Hide Navbar on Scroll Down — Show on Scroll Up
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setShowNavbar(false); // hide when scrolling down
-      } else {
-        setShowNavbar(true); // show when scrolling up
-      }
+      if (window.scrollY > lastScrollY) setShowNavbar(false);
+      else setShowNavbar(true);
       setLastScrollY(window.scrollY);
     };
 
@@ -29,7 +24,6 @@ export default function Navbar() {
 
   return (
     <header className={`school-header ${showNavbar ? "nav-show" : "nav-hide"}`}>
-      {/* 🌟 Top Bar (Logo + Title) */}
       <div className="middle-bar">
         <img src="/assets/logo.png" alt="School Logo" className="school-logo" />
         <div className="school-title">
@@ -38,13 +32,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* 🌟 Navigation */}
       <nav className="nav-bar" aria-label="Main navigation">
-        {/* Desktop Menu */}
         <div className="menu desktop-menu">
           <NavLink to="/" end>Home</NavLink>
 
-          {/* Facilities Dropdown */}
           <div
             className="dropdown"
             onMouseEnter={() => setOpenFacilities(true)}
@@ -66,7 +57,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Academics Dropdown */}
           <div
             className="dropdown"
             onMouseEnter={() => setOpenAcademics(true)}
@@ -84,6 +74,7 @@ export default function Navbar() {
           </div>
 
           <NavLink to="/results">Results</NavLink>
+          <NavLink to="/updates" className="announce-link">Announcements</NavLink>
           <NavLink to="/tc">TC</NavLink>
           <NavLink to="/gallery">Gallery</NavLink>
           <NavLink to="/about">About Us</NavLink>
@@ -91,7 +82,6 @@ export default function Navbar() {
           <NavLink to="/mandatory">Mandatory Disclosure</NavLink>
         </div>
 
-        {/* Mobile Toggle Button */}
         <button
           className="menu-toggle"
           aria-expanded={menuOpen}
@@ -101,20 +91,19 @@ export default function Navbar() {
           ☰
         </button>
 
-        {/* Mobile Menu */}
         {menuOpen && (
-<div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-  <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-  <NavLink to="/facilities" onClick={closeMenu}>Facilities</NavLink>
-  <NavLink to="/academics" onClick={closeMenu}>Academics</NavLink>
-  <NavLink to="/results" onClick={closeMenu}>Results</NavLink>
-  <NavLink to="/tc" onClick={closeMenu}>TC</NavLink>
-  <NavLink to="/gallery" onClick={closeMenu}>Gallery</NavLink>
-  <NavLink to="/about" onClick={closeMenu}>About Us</NavLink>
-  <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
-  <NavLink to="/mandatory" onClick={closeMenu}>Mandatory Disclosure</NavLink>
-</div>
-
+          <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+            <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+            <NavLink to="/facilities" onClick={closeMenu}>Facilities</NavLink>
+            <NavLink to="/academics" onClick={closeMenu}>Academics</NavLink>
+            <NavLink to="/results" onClick={closeMenu}>Results</NavLink>
+            <NavLink to="/updates" onClick={closeMenu}>Announcements</NavLink>
+            <NavLink to="/tc" onClick={closeMenu}>TC</NavLink>
+            <NavLink to="/gallery" onClick={closeMenu}>Gallery</NavLink>
+            <NavLink to="/about" onClick={closeMenu}>About Us</NavLink>
+            <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
+            <NavLink to="/mandatory" onClick={closeMenu}>Mandatory Disclosure</NavLink>
+          </div>
         )}
       </nav>
     </header>

@@ -1,0 +1,50 @@
+.daily-updates-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 16px 30px;
+}
+
+.daily-updates-header h2 {
+  margin: 0 0 8px;
+  color: #0f2b63;
+}
+
+.daily-updates-header p {
+  margin: 0 0 16px;
+  color: #4b5563;
+}
+
+.daily-card {
+  background: #fff;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border-left: 4px solid #0f2b63;
+  box-shadow: 0 8px 20px rgba(15, 43, 99, 0.08);
+}
+
+.daily-card h4 {
+  margin: 0 0 8px;
+}
+
+.daily-card p {
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.daily-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.daily-attachments a {
+  text-decoration: none;
+  color: #0f2b63;
+  font-weight: 600;
+}
+
+.daily-empty {
+  color: #6b7280;
+}
